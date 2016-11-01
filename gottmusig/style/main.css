@@ -1,0 +1,144 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #1C140D;
+    color: #FFFFFF;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    z-index: 999;
+}
+nav ul {
+    display: flex;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    list-style: none;
+    border-left: 1px #000 solid;
+    box-shadow: 1px 0px 0px 0px #999 inset;
+}
+nav ul li {
+    float: left;
+    border-right: 1px #000 solid;
+    box-shadow: 1px 0px 0px 0px #999;
+    margin-left: 1px;
+    padding: 25px;
+    display: inline-block;
+    cursor: pointer;
+    color: #58b72f;
+}
+nav ul li:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: #68BE43;
+}
+
+#header {
+    background-image: url("image/header-illidan.jpg");
+    background-color: #000;
+    width: 100%;
+    padding-top: 150px;
+    padding-bottom: 100px;
+    text-align: center;
+    vertical-align: middle;
+    display: table;
+    background-position: center -140px;
+    border-bottom: 10px solid #FFF;
+    margin-bottom: 100px;
+    text-shadow: 1px 1px 1px #000;
+}
+
+#main-content-wrapper {
+    border: 1px solid #346D1C;
+    border-radius: 15px;
+    max-width: 770px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+#main-content-wrapper h1 {
+    border-bottom: 1px solid #58b72f;
+    margin-bottom: 25px;
+}
+#main-content-wrapper ul {
+    list-style: none;
+}
+#main-content-wrapper ul li {
+    margin-top: 15px;
+}
+#dps-back {
+    margin-top: 5px;
+    padding: 2px;
+    background-color: #444444;
+}
+#dps {
+    height: 8px;
+}
+
+#footer {
+    margin-top: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: #1e1c1b;
+    text-align: center;
+}
+
+#developers {
+    background-color: #000000;
+    color: #444444;
+    display: table;
+    width: 100%;    
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+#developer-wrapper {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+}
+
+.developer {
+    margin-top: 50px;
+    float: left;
+    width: 200px;
+}
+.developer div {
+    margin-left: 50px;
+}
+
+#developers label {
+    margin-top: 50px;
+    font-size: small;
+    color: #888;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

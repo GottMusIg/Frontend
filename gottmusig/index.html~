@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>GottMusIg</title>
+    <link rel="stylesheet" type="text/css" href="style/main.css" />
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>GottMusIg</li>
+            <li>Gear</li>
+            <li>Developer</li>
+        <ul>
+    </nav>
+    <div id="header">
+        <div>
+            <h1>
+                GottMusIg
+            </h1><br />
+            <b>BiS and DPS-SIM</b> 
+        </div>
+    </div>
+    <div id="main-content-wrapper">
+        <h1>
+            Class DPS
+        </h1>
+        <ul>
+            <li style="position: abolute;">
+                <h4>Havoc Demon Hunter</h4>
+                <h4 style="float: right;">232,236</h4>
+                <div id="dps-back">
+                    <div id="dps"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
