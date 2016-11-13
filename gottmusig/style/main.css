@@ -155,7 +155,7 @@ form a {
 
 #developers {
     background-color: #000000;
-    color: #444444;
+    color: #58b72f;
     display: table;
     width: 100%;    
     text-align: center;
@@ -184,6 +184,20 @@ form a {
     font-size: small;
     color: #888;
 }
+.developer-img-background {
+    position: relative;    
+    height: 100px; 
+    width: 100px;
+    border-radius: 50px;
+    background-color: #ffffff;
+    margin-bottom: 15px;
+}
+#kpk-img {
+    width: 115px;
+    position: absolute;
+    top: -17px;
+    left: -12px;
+}
 
 
 
@@ -204,6 +218,3 @@ form a {
 
 
 
-
-box-shadow: 0px 0px 3px 2px #58b72f inset;
-    border-radius: 5px;
