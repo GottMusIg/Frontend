@@ -125,6 +125,7 @@ form a {
     margin-left: auto;
     margin-right: auto;
     padding: 15px;
+    background-color: #1e1c1b;
 }
 #main-content-wrapper h1 {
     border-bottom: 1px solid #58b72f;
@@ -135,14 +136,57 @@ form a {
 }
 #main-content-wrapper ul li {
     margin-top: 15px;
+    position: relative;
+}
+.total-dps {
+	display: inline-block;
+	position: absolute;
+	right: 0%;
+	top: 2px;
 }
 #dps-back {
     margin-top: 5px;
     padding: 2px;
     background-color: #444444;
 }
-#dps {
+.dps {
     height: 8px;
+}
+.warrior {
+	background-color: #c79c6e;
+}
+.mage {
+	background-color: #69ccf0;
+}
+.demon-hunter {
+	background-color: #a330c9;
+}
+.warlock {
+	background-color: #9482c9;
+}
+.priest {
+	background-color: #ffffff;
+}
+.paladin {
+	background-color: #f58cba;
+}
+.hunter {
+	background-color: #abd473;
+}
+.rogue {
+	background-color: #fff569;
+}
+.shaman {
+	background-color: #0070de;
+}
+.monk {
+	background-color: #00ff96;
+}
+.druid {
+	background-color: #ff7d0a;
+}
+.death-knight {
+	background-color: #c41f3b;
 }
 
 #footer {
