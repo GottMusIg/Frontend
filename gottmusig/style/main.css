@@ -16,13 +16,14 @@ nav {
     z-index: 999;
 }
 nav ul {
-    display: flex;
-    max-width: 800px;
+    display: table;
+    width: 800px;
     margin-left: auto;
     margin-right: auto;
     list-style: none;
-    border-left: 1px #000 solid;
-    box-shadow: 1px 0px 0px 0px #999 inset;
+    border-left: 1px #999 solid;
+    border-right: 1px #999 solid;
+    box-shadow: 1px 0px 0px 0px #000 inset;
 }
 nav ul li {
     float: left;
@@ -34,9 +35,72 @@ nav ul li {
     cursor: pointer;
     color: #58b72f;
 }
+#logo {
+    padding-top: 3px;
+    padding-bottom: 1px;
+}
+#logo-img {
+    height: 60px;
+}
+#nav-right {
+    float: right;
+    padding-left: 50px;
+    border-left: 1px #000 solid;
+    box-shadow: -1px 0px 0px 0px #999;
+    position: relative;
+    cursor: initial;
+}
+#nav-right img {
+    position: absolute;
+    height: 30px;
+    left: 10px;
+    top: 15px;
+}
+#nav-right .dropdown {
+    position: absolute;
+    padding: 25px;
+    width: 185px;
+    background-color: rgba(0, 0, 0, 0.95);
+    border-left: 1px #999 solid;
+    color: #FFFFFF;
+    float: left;
+    left: -2px;
+    margin-top: 25px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: none;
+}
+#nav-right:hover .dropdown {
+    display: block;
+}
 nav ul li:hover {
     background: rgba(0, 0, 0, 0.8);
     color: #68BE43;
+}
+form input {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px #58b72f solid;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+}
+form input:focus {
+    box-shadow: 0px 0px 3px 2px #58b72f inset;
+}
+form button {
+    background-color: #58b72f;
+    color: #FFFFFF;
+    border: 1px #fff solid;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    width: 85px;
+}
+form a {
+    color: #58b72f;
 }
 
 #header {
@@ -141,4 +205,5 @@ nav ul li:hover {
 
 
 
-
+box-shadow: 0px 0px 3px 2px #58b72f inset;
+    border-radius: 5px;
