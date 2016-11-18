@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+a {
+	color: #58b72f;
+}
+
 body {
     background-color: #1C140D;
     color: #FFFFFF;
@@ -277,3 +281,26 @@ form a {
 
 
 
+#main-content-wrapper-clear {
+    border-radius: 15px;
+    max-width: 770px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+#main-content-wrapper-clear h1 {
+    border-bottom: 1px solid #58b72f;
+    margin-bottom: 25px;
+}
+#main-content-wrapper-clear ul {
+    list-style: none;
+}
+#main-content-wrapper-clear ul li {
+    margin-top: 15px;
+    position: relative;
+}
+.green {
+	color: #58b72f;
+	font-size: 15pt;
+	font-weight: bolder;
+}
