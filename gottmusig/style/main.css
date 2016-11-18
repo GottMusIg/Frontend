@@ -233,7 +233,7 @@ form a {
     width: 100px;
     border-radius: 50px;
     background-color: #ffffff;
-    margin-bottom: 15px;
+    margin-bottom: 45px;
 }
 #kpk-img {
     width: 115px;
@@ -241,7 +241,13 @@ form a {
     top: -17px;
     left: -12px;
 }
-
+#ce-bc {
+	background-color: #1e1c1b;
+}
+#ce-img {
+	margin-top: -50px;
+	margin-left: -46px;
+}
 
 
 
