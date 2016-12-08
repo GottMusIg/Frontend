@@ -1,0 +1,45 @@
+package com.gottmusig;
+
+import org.apache.wicket.application.IComponentInitializationListener;
+import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.gottmusig.dpsdifference.configuration.DPSDifferenceConfiguration;
+import com.gottmusig.dpsdifference.configuration.JpaConfiguration;
+import com.gottmusig.page.HomePage;
+
+/**
+ * Application object for your web application.
+ * If you want to run this application without deploying, run the Start class.
+ * 
+ * @see com.gottmusig.Start#main(String[])
+ */
+public class GottmusigApplication extends WebApplication
+{
+	/**
+	 * @see org.apache.wicket.Application#getHomePage()
+	 */
+	@Override
+	public Class<? extends WebPage> getHomePage()
+	{
+		return HomePage.class;
+	}
+
+	/**
+	 * @see org.apache.wicket.Application#init()
+	 */
+	@Override
+	public void init()
+	{
+		super.init();
+
+//		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+//		ctx.register(DPSDifferenceConfiguration.class);
+//		ctx.refresh();
+//		getComponentInitializationListeners().add(new SpringComponentInjector(this, ctx));
+		
+		// add your configuration here
+	}
+}
