@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.3-strict.dtd"
+	lang="de">
+<head>
+</head>
+<body>
+	<wicket:panel>
+		<ul>
+            <a wicket:id="home"><li id="logo"><img id="logo-img" src="style/image/logo.png" alt="GottMusIg" ></li></a>
+            <li>Gear</li>
+            <a wicket:id="about"><li>About</li></a>
+            <li id="nav-right">
+                <img src="style/image/account.png"> Login
+                <div class="dropdown">
+                    <form>
+                        <label><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
+
+                        <label><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                        <br/>
+                        <button type="submit">Login</button>
+                        <br/>
+                        <label>Create a <a href="#">GottMusIg Account</a></label>
+                    </form>
+                </div>
+            </li>
+        </ul>
+	</wicket:panel>
+</body>
+</html>

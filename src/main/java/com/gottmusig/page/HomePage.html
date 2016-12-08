@@ -10,29 +10,7 @@
 	</wicket:head>
 </head>
 <body>
-    <nav>
-        <ul>
-            <a href="index.html"><li id="logo"><img id="logo-img" src="style/image/logo.png" alt="GottMusIg" ></li></a>
-            <li>Gear</li>
-            <a href="about.html"><li>About</li></a>
-            <li id="nav-right">
-                <img src="style/image/account.png"> Login
-                <div class="dropdown">
-                    <form>
-                        <label><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required>
-
-                        <label><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
-                        <br/>
-                        <button type="submit">Login</button>
-                        <br/>
-                        <label>Create a <a href="#">GottMusIg Account</a></label>
-                    </form>
-                </div>
-            </li>
-        </ul>
-    </nav>
+    <nav wicket:id="navigation"></nav>
     <div id="header">
         <div>
             <h1>
@@ -47,44 +25,6 @@
         </h1>
         <div wicket:id="classDPSPanel"></div>
     </div>
-    <div id="footer" style="padding-right: 25%; padding-left: 25%;">
-        <h1>WoW License</h1>
-        <br />
-        <hr style="color: #58b72f; border-bottom: 0px;" />
-        <br />
-        The Header-Image is an original Blizzard image.<br \>
-        <br />
-        &copy;2016 Blizzard Entertainment, Inc. All rights reserved. World of Warcraft, The Burning Crusade, Wrath of The Lich King, Cataclysm, Mists of Pandaria, Warlords of Draenor, Legion and Blizzard Entertainment are trademarks or registered trademarks of Blizzard Entertainment in the U.S. and/or other countries.<br \>
-        <br />
-        See also Blizzard Licenses.
-    </div>
-    <div id="developers">
-        <div id="developer-wrapper">
-      		<a href="about.html#leon">
-	            <div class="developer">
-	                <div class="developer-img-background"></div>
-	                Leon Gottschick
-	            </div>
-            </a>
-            <a href="about.html#kamil">
-	            <div class="developer">
-	                <div class="developer-img-background">
-	                    <img id="kpk-img" src="style/image/Illidan-kpk.png">
-	                </div>
-	                Kamil Piotr Kalmus
-	            </div>
-            </a>
-           	<a href="about.html#christoph">
-	            <div class="developer">
-	                <div id="ce-bc" class="developer-img-background">
-	                	<img id="ce-img" src="style/image/dosenoeffnerFertig.png">
-	                </div>
-	                Christoph Emig
-	            </div>
-            </a>
-        </div>
-        <br />
-        <label>Created by GottMusIg</label>
-    </div>
+    <div wicket:id="footer"></div>
 </body>
 </html>

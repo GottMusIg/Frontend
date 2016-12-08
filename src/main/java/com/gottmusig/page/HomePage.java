@@ -6,8 +6,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.gottmusig.component.ClassDPSPanel;
-import com.gottmusig.dpsdifference.configuration.DPSDifferenceConfiguration;
-import com.gottmusig.dpsdifference.domain.api.DPSDifference;
+import com.gottmusig.component.FooterPanel;
+import com.gottmusig.component.NavigationPanel;
+import com.gottmusig.configuration.ApplicationConfiguration;
 import com.gottmusig.model.SpecificationDPSListModel;
 
 public class HomePage extends WebPage {
@@ -17,13 +18,12 @@ public class HomePage extends WebPage {
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 
-		ApplicationContext context = new AnnotationConfigApplicationContext(DPSDifferenceConfiguration.class);
-        DPSDifference dpsDifference = context.getBean(DPSDifference.class);
+		ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+        SpecificationDPSListModel specificationDPSModel = context.getBean(SpecificationDPSListModel.class);
 		
-		
-        SpecificationDPSListModel specificationDPSModel = new SpecificationDPSListModel(dpsDifference);
-		
+        add(new NavigationPanel("navigation"));
 		add(new ClassDPSPanel("classDPSPanel", specificationDPSModel));
+		add(new FooterPanel("footer"));
 
     }
 	

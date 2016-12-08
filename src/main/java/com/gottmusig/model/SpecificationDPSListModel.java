@@ -14,19 +14,21 @@ public class SpecificationDPSListModel extends AbstractReadOnlyModel<List<Specif
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private DPSDifference dpsDifference;
+	private List<SpecificationDPSEntity> specDps;
+	private int maxDps;
 
 	public SpecificationDPSListModel(DPSDifference dpsDifference) {
-		this.dpsDifference = dpsDifference;
+		this.specDps = dpsDifference.getAllDPSValues();
+		this.maxDps = dpsDifference.getMaxDPSValue();
 	}
 	
 	@Override
 	public List<SpecificationDPSEntity> getObject() {
-		return  dpsDifference.getAllDPSValues();
+		return  specDps;
 	}
 
 	public int getMaxDPS() {
-		return dpsDifference.getMaxDPSValue();
+		return maxDps;
 	}
 	
 }
