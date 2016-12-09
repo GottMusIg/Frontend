@@ -3,6 +3,7 @@
 	<name>Frontend</name>
 	<comment></comment>
 	<projects>
+		<project>DatabaseService</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -1,5 +1,9 @@
 package com.gottmusig.component;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
+
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -41,7 +45,16 @@ public class ClassDPSPanel extends Panel {
 														 .getWOWClass()
 														 .getName())));
 				
-				item.add(new Label("dps", Model.of(item.getModelObject().getSpecificationDPS())));
+				DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+				symbols.setDecimalSeparator('.');
+				DecimalFormat format = new DecimalFormat("0.#");
+				format.setDecimalFormatSymbols(symbols);
+				
+				try {
+					item.add(new Label("dps", Model.of(format.parse("" + item.getModelObject().getSpecificationDPS()).floatValue())));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
 				
 				WebMarkupContainer dpsDiagram = new WebMarkupContainer("dps-diagram");
 				
@@ -49,7 +62,8 @@ public class ClassDPSPanel extends Panel {
 																	 .getSpecification()
 																	 .getWOWClass()
 																	 .getName()
-																	 .toLowerCase()));
+																	 .toLowerCase()
+																	 .replaceAll("\\s+", "")));
 				
 				//TODO add the max dps from the domain model
 				int maxDps = ((SpecificationDPSListModel) getDefaultModel()).getMaxDPS();

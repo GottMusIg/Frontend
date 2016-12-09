@@ -92,7 +92,7 @@ form input {
 form input:focus {
     box-shadow: 0px 0px 3px 2px #58b72f inset;
 }
-form button {
+form .button {
     background-color: #58b72f;
     color: #FFFFFF;
     border: 1px #fff solid;
@@ -104,6 +104,13 @@ form button {
 }
 form a {
     color: #58b72f;
+}
+form select {
+	background-color: #58b72f;
+	color: #FFFFFF;
+	padding-right: 5px;
+	border: 1px solid #58b72f;
+	border-radius: 3px;
 }
 
 #header {
@@ -149,11 +156,11 @@ form a {
 }
 #dps-back {
     margin-top: 5px;
-    padding: 2px;
+    padding: 1px;
     background-color: #444444;
 }
 .dps {
-    height: 8px;
+    height: 4px;
 }
 .warrior {
 	background-color: #c79c6e;
@@ -161,7 +168,7 @@ form a {
 .mage {
 	background-color: #69ccf0;
 }
-.demon-hunter {
+.demonhunter {
 	background-color: #a330c9;
 }
 .warlock {
@@ -188,7 +195,7 @@ form a {
 .druid {
 	background-color: #ff7d0a;
 }
-.death-knight {
+.deathknight {
 	background-color: #c41f3b;
 }
 
