@@ -246,6 +246,11 @@ form select {
     background-color: #ffffff;
     margin-bottom: 45px;
 }
+#le-img {
+	width: 105px;
+	margin-left: -3px;
+	margin-top: -2px;
+}
 #kpk-img {
     width: 115px;
     position: absolute;

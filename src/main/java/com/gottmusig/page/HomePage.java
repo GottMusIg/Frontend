@@ -19,7 +19,7 @@ public class HomePage extends WebPage {
 		super(parameters);
 
 		ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
-        SpecificationDPSListModel specificationDPSModel = context.getBean(SpecificationDPSListModel.class);
+		SpecificationDPSListModel specificationDPSModel = context.getBean(SpecificationDPSListModel.class);
 		
         add(new NavigationPanel("navigation"));
 		add(new ClassDPSPanel("classDPSPanel", specificationDPSModel));

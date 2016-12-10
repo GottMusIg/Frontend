@@ -1,13 +1,8 @@
 package com.gottmusig;
 
-import org.apache.wicket.application.IComponentInitializationListener;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
-import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.gottmusig.dpsdifference.configuration.DPSDifferenceConfiguration;
-import com.gottmusig.dpsdifference.configuration.JpaConfiguration;
 import com.gottmusig.page.HomePage;
 
 /**

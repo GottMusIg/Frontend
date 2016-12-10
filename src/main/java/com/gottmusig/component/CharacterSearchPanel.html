@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.3-strict.dtd"
+	lang="de">
+<head>
+</head>
+<body>
+	<wicket:panel>
+		<form wicket:id="character-search-form">
+        	<table>
+        		<tr>
+        			<td>
+		        		<label><b>Location</b></label>
+		        	</td>
+		        	<td>
+			        	<select style="width: 125px;" wicket:id="location"></select>
+		        	</td>
+	        	</tr>
+				<tr>	 
+					<td>       
+		        		<label><b>Realm</b></label>
+		        	</td>
+		        	<td>
+			        	<select style="width: 125px;" wicket:id="realm"></select>
+		        	</td>
+				</tr>
+				<tr>
+					<td style="padding-right: 15px;">
+	        			<label><b>Your Characters name</b></label>
+	        		</td>
+	        		<td>
+	        			<input placeholder="Character name" type="text" wicket:id="name" />
+	        		</td>
+	        	</tr>
+	        	<tr>
+	        		<td>
+	        		</td>
+	        		<td>
+	        			<Button class="button" wicket:id="search">Search</Button>
+	        		</td>
+	        	</tr>
+        	</table>
+        </form>
+        <span wicket:id="blizz"></span>
+	</wicket:panel>
+</body>
+</html>
