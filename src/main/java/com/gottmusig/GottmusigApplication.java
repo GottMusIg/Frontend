@@ -11,14 +11,13 @@ import com.gottmusig.page.HomePage;
  * 
  * @see com.gottmusig.Start#main(String[])
  */
-public class GottmusigApplication extends WebApplication
-{
+public class GottmusigApplication extends WebApplication {
+	
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
 	@Override
-	public Class<? extends WebPage> getHomePage()
-	{
+	public Class<? extends WebPage> getHomePage() {
 		return HomePage.class;
 	}
 
@@ -26,8 +25,7 @@ public class GottmusigApplication extends WebApplication
 	 * @see org.apache.wicket.Application#init()
 	 */
 	@Override
-	public void init()
-	{
+	public void init() {
 		super.init();
 
 //		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();

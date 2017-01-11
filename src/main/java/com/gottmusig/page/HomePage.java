@@ -7,7 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.gottmusig.component.ClassDPSPanel;
 import com.gottmusig.component.FooterPanel;
-import com.gottmusig.component.NavigationPanel;
+import com.gottmusig.component.HeaderPanel;
 import com.gottmusig.configuration.ApplicationConfiguration;
 import com.gottmusig.model.SpecificationDPSListModel;
 
@@ -21,10 +21,11 @@ public class HomePage extends WebPage {
 		ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
 		SpecificationDPSListModel specificationDPSModel = context.getBean(SpecificationDPSListModel.class);
 		
-        add(new NavigationPanel("navigation"));
-		add(new ClassDPSPanel("classDPSPanel", specificationDPSModel));
+        add(new HeaderPanel("header"));
+		add(new ClassDPSPanel("classDPSPanel",
+				   			  "Class DPS",
+				   			  specificationDPSModel));
 		add(new FooterPanel("footer"));
-
     }
 	
 }

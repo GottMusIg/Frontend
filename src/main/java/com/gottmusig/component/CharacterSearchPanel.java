@@ -23,6 +23,11 @@ import com.gottmusig.searchcharacter.jpa.Location;
 
 public class CharacterSearchPanel extends Panel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private IModel<List<Location>> locationsListModel;
 
 	public CharacterSearchPanel(String id,
@@ -39,6 +44,12 @@ public class CharacterSearchPanel extends Panel {
 		Label responseText = new Label("blizz");
 		
 		Form<CharacterSearchFormData> searchForm = new Form<CharacterSearchFormData>("character-search-form", formDataModel) {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			protected void onSubmit() {
 				super.onSubmit();
@@ -56,6 +67,12 @@ public class CharacterSearchPanel extends Panel {
 		
 		DropDownChoice<Location> location = new DropDownChoice<>("location", locationsListModel);
 		location.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			protected void onUpdate(AjaxRequestTarget target) {
 				realmListModel.setObject(searchCharModel.getObject().getRealms(formDataModel.getObject().getLocation()));
 //				target.addComponent(realms);
@@ -67,6 +84,12 @@ public class CharacterSearchPanel extends Panel {
 
 		Button submit = new Button("search");
 		submit.add(new AjaxFormComponentUpdatingBehavior("onclick") {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			protected void onUpdate(AjaxRequestTarget target) {
 				target.add(responseText);
 			}

@@ -22,10 +22,14 @@ public class ClassDPSPanel extends Panel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ClassDPSPanel(String id, SpecificationDPSListModel specificationDPSModel) {
+	public ClassDPSPanel(String id,
+						 String title,
+						 SpecificationDPSListModel specificationDPSModel) {
 		super(id);
 		
 		setDefaultModel(specificationDPSModel);
+		
+		add(new Label("title", title));
 		
 		ListView<SpecificationDPSEntity> view = new ListView<SpecificationDPSEntity>("dps-view", specificationDPSModel) {
 			

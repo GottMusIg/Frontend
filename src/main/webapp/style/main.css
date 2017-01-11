@@ -81,9 +81,11 @@ nav ul li:hover {
     background: rgba(0, 0, 0, 0.8);
     color: #68BE43;
 }
-form input {
+nav form input {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+form input {
     border: 1px #58b72f solid;
     border-radius: 5px;
     padding: 5px;
@@ -111,6 +113,34 @@ form select {
 	padding-right: 5px;
 	border: 1px solid #58b72f;
 	border-radius: 3px;
+}
+
+#character-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+#character-table thead {
+	background-color: #346D1C;
+}
+#character-table tbody tr {
+	cursor: pointer;
+}
+td, th {
+	text-align: left;
+	padding: 8px;
+}
+#character-table tr:nth-child(even) {
+	background-color: rgba(52, 109, 28, 0.3);
+}
+#character-table tr {
+	border-bottom: 1px solid #346D1C;
+}
+#character-table tbody tr:hover {
+	background-color: rgba(52, 109, 28, 0.55);
+}
+td {
+	padding-top: 5px;
+	padding-bottom:5px;
 }
 
 #header {

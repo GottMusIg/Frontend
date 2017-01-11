@@ -9,6 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.gottmusig.component.CharacterSearchPanel;
 import com.gottmusig.component.FooterPanel;
+import com.gottmusig.component.HeaderPanel;
 import com.gottmusig.component.NavigationPanel;
 import com.gottmusig.configuration.ApplicationConfiguration;
 import com.gottmusig.model.RealmLocationListModel;
@@ -17,6 +18,11 @@ import com.gottmusig.searchcharacter.domain.api.SearchCharacter;
 
 public class GearPage extends WebPage implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public GearPage(final PageParameters parameters) {
 		super(parameters);
 		
@@ -24,14 +30,13 @@ public class GearPage extends WebPage implements Serializable {
 		RealmLocationListModel locationsModel = context.getBean(RealmLocationListModel.class);
 		ServiceProxyModel<SearchCharacter> searchCharModel = context.getBean(ServiceProxyModel.class);
 		
-		add(new NavigationPanel("navigation"));
+		add(new HeaderPanel("header"));
 		
 		add(new CharacterSearchPanel("character-search",
 									 locationsModel,
 									 searchCharModel));
 		
 		add(new FooterPanel("footer"));
-		
 	}
 	
 }
