@@ -12,6 +12,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
+import com.gottmusig.dpsdifference.domain.api.SpecificationDPS;
 import com.gottmusig.dpsdifference.jpa.SpecificationDPSEntity;
 import com.gottmusig.model.SpecificationDPSListModel;
 
@@ -31,7 +32,7 @@ public class ClassDPSPanel extends Panel {
 		
 		add(new Label("title", title));
 		
-		ListView<SpecificationDPSEntity> view = new ListView<SpecificationDPSEntity>("dps-view", specificationDPSModel) {
+		ListView<SpecificationDPS> view = new ListView<SpecificationDPS>("dps-view", specificationDPSModel) {
 			
 			/**
 			 * 
@@ -39,8 +40,9 @@ public class ClassDPSPanel extends Panel {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected void populateItem(ListItem<SpecificationDPSEntity> item) {
-				item.add(new Label("specification", Model.of(item.getModelObject()
+			protected void populateItem(ListItem<SpecificationDPS> item) {
+				item.add(new Label("specification", Model.of("#" + (item.getIndex()+1) + " " +
+															 item.getModelObject()
 																 .getSpecification()
 																 .getName())));
 				

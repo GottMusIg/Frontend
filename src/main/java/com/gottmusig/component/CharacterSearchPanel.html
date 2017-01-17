@@ -10,13 +10,13 @@
             Choose your Character
         </h1>
 		<form wicket:id="character-search-form">
-        	<table>
+        	<table class="center form-table">
         		<tr>
         			<td>
 		        		<label><b>Location</b></label>
 		        	</td>
 		        	<td>
-			        	<select style="width: 125px;" wicket:id="location"></select>
+			        	<select style="width: 100%; height: 25px;" wicket:id="location"></select>
 		        	</td>
 	        	</tr>
 				<tr>	 
@@ -24,7 +24,7 @@
 		        		<label><b>Realm</b></label>
 		        	</td>
 		        	<td>
-			        	<select style="width: 125px;" wicket:id="realm"></select>
+			        	<select style="width: 100%; height: 25px;" wicket:id="realm"></select>
 		        	</td>
 				</tr>
 				<tr>
@@ -37,9 +37,9 @@
 	        	</tr>
 	        	<tr>
 	        		<td>
+	        			<Button class="button" wicket:id="search">Search</Button>
 	        		</td>
 	        		<td>
-	        			<Button class="button" wicket:id="search">Search</Button>
 	        		</td>
 	        	</tr>
         	</table>

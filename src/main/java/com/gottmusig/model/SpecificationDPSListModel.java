@@ -5,16 +5,16 @@ import java.util.List;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 
 import com.gottmusig.dpsdifference.domain.api.DPSDifference;
-import com.gottmusig.dpsdifference.jpa.SpecificationDPSEntity;
+import com.gottmusig.dpsdifference.domain.api.SpecificationDPS;
 
-public class SpecificationDPSListModel extends AbstractReadOnlyModel<List<SpecificationDPSEntity>> {
+public class SpecificationDPSListModel extends AbstractReadOnlyModel<List<SpecificationDPS>> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private List<SpecificationDPSEntity> specDps;
+	private List<SpecificationDPS> specDps;
 	private int maxDps;
 
 	public SpecificationDPSListModel(DPSDifference dpsDifference) {
@@ -23,7 +23,7 @@ public class SpecificationDPSListModel extends AbstractReadOnlyModel<List<Specif
 	}
 	
 	@Override
-	public List<SpecificationDPSEntity> getObject() {
+	public List<SpecificationDPS> getObject() {
 		return  specDps;
 	}
 

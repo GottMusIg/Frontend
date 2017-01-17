@@ -32,16 +32,16 @@ public class CharacterSearchPanel extends Panel {
 
 	public CharacterSearchPanel(String id,
 								RealmLocationListModel locationsListModel,
-								ServiceProxyModel<SearchCharacter> searchCharModel) {
+								final ServiceProxyModel<SearchCharacter> searchCharModel) {
 		super(id, Model.of(new CharacterSearchFormData()));
 		this.locationsListModel = locationsListModel;
 		
 		final IModel<CharacterSearchFormData> formDataModel = new CompoundPropertyModel<>((CharacterSearchFormData)getDefaultModelObject());
 		
-		IModel<List<String>> realmListModel = new Model();
+		final IModel<List<String>> realmListModel = new Model();
 		realmListModel.setObject(searchCharModel.getObject().getRealms(locationsListModel.getObject().iterator().next()));
 		
-		Label responseText = new Label("blizz");
+		final Label responseText = new Label("blizz");
 		
 		Form<CharacterSearchFormData> searchForm = new Form<CharacterSearchFormData>("character-search-form", formDataModel) {
 			
@@ -62,7 +62,7 @@ public class CharacterSearchPanel extends Panel {
 		};
 		
 		
-		DropDownChoice<String> realms = new DropDownChoice<String>("realm", realmListModel);
+		final DropDownChoice<String> realms = new DropDownChoice<String>("realm", realmListModel);
 		realms.setOutputMarkupId(true);
 		
 		DropDownChoice<Location> location = new DropDownChoice<>("location", locationsListModel);
@@ -106,6 +106,11 @@ public class CharacterSearchPanel extends Panel {
 	}
 	
 	private static class CharacterSearchFormData implements Serializable {
+		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		
 		private Location location;
 		private String realm;
