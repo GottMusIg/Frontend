@@ -1,4 +1,4 @@
-package com.gottmusig.configuration;
+package com.gottmusig.configurations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Import;
 import com.gottmusig.GottmusigApplication;
 import com.gottmusig.dpsdifference.configuration.DPSDifferenceConfiguration;
 import com.gottmusig.dpsdifference.domain.api.DPSDifference;
-import com.gottmusig.model.RealmLocationListModel;
-import com.gottmusig.model.ServiceProxyModel;
-import com.gottmusig.model.SpecificationDPSListModel;
+import com.gottmusig.models.RealmLocationListModel;
+import com.gottmusig.models.ServiceProxyModel;
+import com.gottmusig.models.SpecificationDPSListModel;
 import com.gottmusig.searchcharacter.domain.api.SearchCharacter;
 import com.gottmusig.searchcharacter.jpa.Location;
 

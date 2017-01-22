@@ -1,4 +1,4 @@
-package com.gottmusig.page;
+package com.gottmusig.pages;
 
 import java.io.Serializable;
 
@@ -7,13 +7,13 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.gottmusig.component.CharacterSearchPanel;
-import com.gottmusig.component.FooterPanel;
-import com.gottmusig.component.HeaderPanel;
-import com.gottmusig.component.NavigationPanel;
-import com.gottmusig.configuration.ApplicationConfiguration;
-import com.gottmusig.model.RealmLocationListModel;
-import com.gottmusig.model.ServiceProxyModel;
+import com.gottmusig.components.CharacterSearchPanel;
+import com.gottmusig.components.basics.FooterPanel;
+import com.gottmusig.components.basics.HeaderPanel;
+import com.gottmusig.components.basics.NavigationPanel;
+import com.gottmusig.configurations.ApplicationConfiguration;
+import com.gottmusig.models.RealmLocationListModel;
+import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.searchcharacter.domain.api.SearchCharacter;
 
 public class GearPage extends WebPage implements Serializable {

@@ -1,9 +1,9 @@
-package com.gottmusig.component;
+package com.gottmusig.components;
 
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.gottmusig.page.GearPage;
+import com.gottmusig.pages.GearPage;
 
 public class CharacterOverviewPanel extends Panel {
 	

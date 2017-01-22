@@ -3,7 +3,7 @@ package com.gottmusig;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 
-import com.gottmusig.page.HomePage;
+import com.gottmusig.pages.HomePage;
 
 /**
  * Application object for your web application.

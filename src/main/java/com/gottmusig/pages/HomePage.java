@@ -1,15 +1,15 @@
-package com.gottmusig.page;
+package com.gottmusig.pages;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.gottmusig.component.ClassDPSPanel;
-import com.gottmusig.component.FooterPanel;
-import com.gottmusig.component.HeaderPanel;
-import com.gottmusig.configuration.ApplicationConfiguration;
-import com.gottmusig.model.SpecificationDPSListModel;
+import com.gottmusig.components.ClassDPSPanel;
+import com.gottmusig.components.basics.FooterPanel;
+import com.gottmusig.components.basics.HeaderPanel;
+import com.gottmusig.configurations.ApplicationConfiguration;
+import com.gottmusig.models.SpecificationDPSListModel;
 
 public class HomePage extends WebPage {
 	

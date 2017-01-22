@@ -1,4 +1,4 @@
-package com.gottmusig.component;
+package com.gottmusig.components;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,8 +15,8 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import com.gottmusig.model.RealmLocationListModel;
-import com.gottmusig.model.ServiceProxyModel;
+import com.gottmusig.models.RealmLocationListModel;
+import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.searchcharacter.domain.api.SearchCharacter;
 import com.gottmusig.searchcharacter.jpa.Location;
 
@@ -75,9 +75,9 @@ public class CharacterSearchPanel extends Panel {
 
 			protected void onUpdate(AjaxRequestTarget target) {
 				realmListModel.setObject(searchCharModel.getObject().getRealms(formDataModel.getObject().getLocation()));
-//				target.addComponent(realms);
 				target.add(realms);
 			}
+			
 		});
 		
 		TextField<String> characterName = new TextField<>("name");

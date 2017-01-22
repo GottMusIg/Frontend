@@ -1,4 +1,4 @@
-package com.gottmusig.component;
+package com.gottmusig.components.basics;
 
 import org.apache.wicket.markup.html.panel.Panel;
 

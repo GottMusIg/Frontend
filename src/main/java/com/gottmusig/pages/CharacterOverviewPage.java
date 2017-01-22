@@ -1,11 +1,11 @@
-package com.gottmusig.page;
+package com.gottmusig.pages;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import com.gottmusig.component.CharacterOverviewPanel;
-import com.gottmusig.component.FooterPanel;
-import com.gottmusig.component.HeaderPanel;
+import com.gottmusig.components.CharacterOverviewPanel;
+import com.gottmusig.components.basics.FooterPanel;
+import com.gottmusig.components.basics.HeaderPanel;
 
 public class CharacterOverviewPage extends WebPage {
 

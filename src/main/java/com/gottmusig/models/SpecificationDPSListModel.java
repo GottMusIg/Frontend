@@ -1,4 +1,4 @@
-package com.gottmusig.model;
+package com.gottmusig.models;
 
 import java.util.List;
 

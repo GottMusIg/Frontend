@@ -1,4 +1,4 @@
-package com.gottmusig.component;
+package com.gottmusig.components;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -14,7 +14,7 @@ import org.apache.wicket.model.Model;
 
 import com.gottmusig.dpsdifference.domain.api.SpecificationDPS;
 import com.gottmusig.dpsdifference.jpa.SpecificationDPSEntity;
-import com.gottmusig.model.SpecificationDPSListModel;
+import com.gottmusig.models.SpecificationDPSListModel;
 
 public class ClassDPSPanel extends Panel {
 

@@ -9,14 +9,14 @@
         <h1>
 			Create Account
         </h1>
-		<form action="">
+		<form wicket:id="registry-form">
         	<table class="center form-table">
         		<tr>
         			<td style="width: 125px;">
 		        		<label><b>Username</b></label>
 		        	</td>
 		        	<td>
-			        	<input type="text" placeholder="Username" />
+			        	<input type="text" placeholder="Username" wicket:id="username" />
 		        	</td>
 	        	</tr>
 				<tr>	 
@@ -24,7 +24,7 @@
 		        		<label><b>Password</b></label>
 		        	</td>
 		        	<td>
-			        	<input type="password" placeholder="Password" />
+			        	<input type="password" placeholder="Password" wicket:id="password" />
 		        	</td>
 				</tr>
 				<tr>	 
@@ -32,7 +32,7 @@
 		        		<label><b>Repeat Password</b></label>
 		        	</td>
 		        	<td>
-			        	<input type="password" placeholder="Password" />
+			        	<input type="password" placeholder="Password" wicket:id="confirmPassword" />
 		        	</td>
 				</tr>
 	        	<tr>
