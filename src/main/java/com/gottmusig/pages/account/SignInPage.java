@@ -1,24 +1,24 @@
-package com.gottmusig.pages;
+package com.gottmusig.pages.account;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import com.gottmusig.components.CharacterOverviewPanel;
+import com.gottmusig.components.account.SignInPanel;
 import com.gottmusig.components.basics.FooterPanel;
 import com.gottmusig.components.basics.HeaderPanel;
 
-public class CharacterOverviewPage extends WebPage {
+public class SignInPage extends WebPage {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public CharacterOverviewPage(final PageParameters parameters) {
+	public SignInPage(final PageParameters parameters) {
 		super(parameters);
 		
 		add(new HeaderPanel("header"));
-		add(new CharacterOverviewPanel("character-overview"));
+		add(new SignInPanel("sign-in"));
 		add(new FooterPanel("footer"));
 	}
 	

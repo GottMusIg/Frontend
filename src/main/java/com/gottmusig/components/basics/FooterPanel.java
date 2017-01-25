@@ -3,7 +3,7 @@ package com.gottmusig.components.basics;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.gottmusig.pages.satatic.AboutPage;
+import com.gottmusig.pages.statics.AboutPage;
 
 public class FooterPanel extends Panel {
 

@@ -64,6 +64,11 @@
 			<version>${wicket.version}</version>
   		</dependency>
   		<dependency>
+		    <groupId>org.apache.wicket</groupId>
+		    <artifactId>wicket-auth-roles</artifactId>
+		    <version>7.6.0</version>
+		</dependency>
+  		<dependency>
 		    <groupId>com.gottmusig</groupId>
 		    <artifactId>database-service</artifactId>
 		    <version>0.0.1-SNAPSHOT</version>

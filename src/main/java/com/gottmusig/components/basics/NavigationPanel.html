@@ -12,22 +12,8 @@
 	            <a wicket:id="gear"><li>Gear</li></a>
 	            <a wicket:id="about"><li>About</li></a>
 	            <a wicket:id="character"><li>Characters</li></a>
-	            <li id="nav-right">
-	                <img src="style/image/account.png"> Login
-	                <div class="dropdown">
-	                    <form>
-	                        <label><b>Username</b></label>
-	                        <input type="text" placeholder="Enter Username" name="uname" required>
-	
-	                        <label><b>Password</b></label>
-	                        <input type="password" placeholder="Enter Password" name="psw" required>
-	                        <br/>
-	                        <input class="button" type="submit" value="Login" />
-	                        <br/>
-	                        <label>Create a <a wicket:id="create-account">GottMusIg Account</a></label>
-	                    </form>
-	                </div>
-	            </li>
+	            <a wicket:id="sign-out" class="nav-right" style="cursor: pointer;"><li>Sign out</li></a>
+	            <div wicket:id="sign-in-panel"></div>
 	        </ul>
 	    </nav>    
 	</wicket:panel>

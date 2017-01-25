@@ -1,4 +1,4 @@
-package com.gottmusig.components;
+package com.gottmusig.components.account;
 
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;

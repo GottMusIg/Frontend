@@ -7,9 +7,10 @@
 <body>
 	<wicket:panel>
         <h1>
-			Create Account
+			Sign In
         </h1>
-		<form wicket:id="registry-form">
+        <div wicket:id="feedback"></div>
+		<form wicket:id="sign-in-form">
         	<table class="center form-table">
         		<tr>
         			<td style="width: 125px;">
@@ -27,17 +28,9 @@
 			        	<input type="password" placeholder="Password" wicket:id="password" />
 		        	</td>
 				</tr>
-				<tr>	 
-					<td>       
-		        		<label><b>Repeat Password</b></label>
-		        	</td>
-		        	<td>
-			        	<input type="password" placeholder="Password" wicket:id="confirmPassword" />
-		        	</td>
-				</tr>
 	        	<tr>
 	        		<td>
-	        			<Button class="button" style="width: 125px;">Create Account</Button>
+	        			<Button class="button" style="width: 125px;">Sign In</Button>
 	        		</td>
 	        		<td>
 	        		</td>

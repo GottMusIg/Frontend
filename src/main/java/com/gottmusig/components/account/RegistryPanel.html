@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.3-strict.dtd"
+	lang="de">
+<head>
+</head>
+<body>
+	<wicket:panel>
+        <h1>
+			Create Account
+        </h1>
+        <div wicket:id="feedback"></div>
+		<form wicket:id="registry-form">
+        	<table class="center form-table">
+        		<tr>
+        			<td style="width: 125px;">
+		        		<label><b>Username</b></label>
+		        	</td>
+		        	<td>
+			        	<input type="text" placeholder="Username" wicket:id="username" />
+		        	</td>
+	        	</tr>
+				<tr>	 
+					<td>       
+		        		<label><b>Password</b></label>
+		        	</td>
+		        	<td>
+			        	<input type="password" placeholder="Password" wicket:id="password" />
+		        	</td>
+				</tr>
+				<tr>	 
+					<td>       
+		        		<label><b>Confirm password</b></label>
+		        	</td>
+		        	<td>
+			        	<input type="password" placeholder="Password" wicket:id="confirmPassword" />
+		        	</td>
+				</tr>
+	        	<tr>
+	        		<td>
+	        			<Button class="button" style="width: 125px;">Create Account</Button>
+	        		</td>
+	        		<td>
+	        		</td>
+	        	</tr>
+        	</table>
+        </form>
+	</wicket:panel>
+</body>
+</html>

@@ -4,7 +4,7 @@ import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.gottmusig.page.HomePage;
+import com.gottmusig.pages.HomePage;
 
 /**
  * Simple test using the WicketTester

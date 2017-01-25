@@ -1,4 +1,4 @@
-package com.gottmusig.pages.satatic;
+package com.gottmusig.pages.statics;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
