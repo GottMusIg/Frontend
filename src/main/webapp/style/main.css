@@ -307,7 +307,11 @@ td, th {
 	margin-left: -46px;
 }
 
-
+#account-feedback {
+	margin: 50px !important;
+	text-align: center !important;
+	border: none !important;
+}
 
 
 

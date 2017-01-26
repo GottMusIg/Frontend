@@ -6,8 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.gottmusig.GottmusigApplication;
+import com.gottmusig.account.domain.api.AccountAdministration;
 import com.gottmusig.dpsdifference.configuration.DPSDifferenceConfiguration;
 import com.gottmusig.dpsdifference.domain.api.DPSDifference;
+import com.gottmusig.models.AccountServiceProxyModel;
 import com.gottmusig.models.RealmLocationListModel;
 import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.models.SpecificationDPSListModel;
@@ -15,12 +17,12 @@ import com.gottmusig.searchcharacter.domain.api.SearchCharacter;
 import com.gottmusig.searchcharacter.jpa.Location;
 
 @Configuration
-@Import( DPSDifferenceConfiguration.class )
+@Import( {DPSDifferenceConfiguration.class} )
 public class ApplicationConfiguration {
 
 	@Autowired DPSDifference dpsDifference;
-
 	@Autowired SearchCharacter searchChar;
+	@Autowired AccountAdministration accountAdministration;
 	
 	@Bean
 	public GottmusigApplication gottmusigApplication() {
@@ -40,6 +42,11 @@ public class ApplicationConfiguration {
 	@Bean
 	public ServiceProxyModel<SearchCharacter> searchCharacterModel() {
 		return new ServiceProxyModel<>(searchChar);
+	}
+	
+	@Bean
+	public AccountServiceProxyModel<AccountAdministration> accountAdministrationModel() {
+		return new AccountServiceProxyModel<AccountAdministration>(accountAdministration);
 	}
 	
 }

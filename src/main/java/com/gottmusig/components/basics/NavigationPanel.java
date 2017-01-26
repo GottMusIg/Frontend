@@ -8,6 +8,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import com.gottmusig.pages.GearPage;
 import com.gottmusig.pages.HomePage;
+import com.gottmusig.pages.account.AccountFeedbackPage;
 import com.gottmusig.pages.account.CharacterOverviewPage;
 import com.gottmusig.pages.statics.AboutPage;
 
@@ -35,7 +36,7 @@ public class NavigationPanel extends Panel {
 			@Override
 			public void onClick() {
 				AuthenticatedWebSession.get().signOut();
-				throw new RestartResponseAtInterceptPageException(HomePage.class);
+				throw new RestartResponseAtInterceptPageException(AccountFeedbackPage.class);
 			}
 			
 		};

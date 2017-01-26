@@ -14,6 +14,8 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import com.gottmusig.account.domain.api.AccountAdministration;
+import com.gottmusig.models.AccountServiceProxyModel;
 import com.gottmusig.pages.HomePage;
 import com.gottmusig.validators.StrongPasswordValidator;
 
@@ -25,8 +27,8 @@ public class RegistryPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 
 	
-	public RegistryPanel(String id) {
-		super(id, Model.of(new RegistryFormData()));
+	public RegistryPanel(String id, final AccountServiceProxyModel<AccountAdministration> accAdminModel) {
+			super(id, Model.of(new RegistryFormData()));
 
 		final IModel<RegistryFormData> formDataModel = new CompoundPropertyModel<>((RegistryFormData) getDefaultModelObject());
 		
@@ -44,6 +46,7 @@ public class RegistryPanel extends Panel {
 				super.onSubmit();
 				RegistryFormData formData = formDataModel.getObject();
 				String sha256 = sha256(formData.getPassword());
+				accAdminModel.getObject().register(formData.getUsername(), sha256);
 				throw new RestartResponseAtInterceptPageException(HomePage.class);
 			}
 			

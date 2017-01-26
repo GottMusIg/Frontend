@@ -13,7 +13,6 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
 import com.gottmusig.dpsdifference.domain.api.SpecificationDPS;
-import com.gottmusig.dpsdifference.jpa.SpecificationDPSEntity;
 import com.gottmusig.models.SpecificationDPSListModel;
 
 public class ClassDPSPanel extends Panel {
@@ -57,7 +56,9 @@ public class ClassDPSPanel extends Panel {
 				format.setDecimalFormatSymbols(symbols);
 				
 				try {
-					item.add(new Label("dps", Model.of(format.parse("" + item.getModelObject().getSpecificationDPS()).floatValue())));
+					item.add(new Label("dps", Model.of(format.parse("" + item.getModelObject()
+																			 .getSpecificationDPS())
+															 .floatValue())));
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
@@ -71,7 +72,6 @@ public class ClassDPSPanel extends Panel {
 																	 .toLowerCase()
 																	 .replaceAll("\\s+", "")));
 				
-				//TODO add the max dps from the domain model
 				int maxDps = ((SpecificationDPSListModel) getDefaultModel()).getMaxDPS();
 				
 				int dps = item.getModelObject().getSpecificationDPS() * 100 / maxDps;
@@ -83,8 +83,6 @@ public class ClassDPSPanel extends Panel {
 		};
 		
 		add(view);
-		
 	}
-
 	
 }
