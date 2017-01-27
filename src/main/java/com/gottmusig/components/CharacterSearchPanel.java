@@ -5,8 +5,9 @@ import java.util.List;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
@@ -37,14 +38,18 @@ public class CharacterSearchPanel extends Panel {
 		super(id, Model.of(new CharacterSearchFormData()));
 		this.locationsListModel = locationsListModel;
 		
+		final boolean isSignedIn = AuthenticatedWebSession.get().isSignedIn();
+		
 		final IModel<CharacterSearchFormData> formDataModel = new CompoundPropertyModel<>((CharacterSearchFormData)getDefaultModelObject());
 		
 		final IModel<List<String>> realmListModel = new ListModel<String>();
 		realmListModel.setObject(searchCharModel.getObject().getRealms(locationsListModel.getObject().iterator().next()));
 		
 		final Label responseText = new Label("blizz");
+		responseText.setOutputMarkupId(true);
 		
-		Form<CharacterSearchFormData> searchForm = new Form<CharacterSearchFormData>("character-search-form", formDataModel) {
+		Form<CharacterSearchFormData> searchForm = new Form<CharacterSearchFormData>("character-search-form",
+																					 formDataModel) {
 			
 			/**
 			 * 
@@ -55,10 +60,13 @@ public class CharacterSearchPanel extends Panel {
 			protected void onSubmit() {
 				super.onSubmit();
 
-				String s = searchCharModel.getObject().searchCharacter(formDataModel.getObject().getLocation(),
-																	   formDataModel.getObject().getRealm(),
-																	   formDataModel.getObject().getName());
-				responseText.setDefaultModel(Model.of(s));
+				String restResult = searchCharModel.getObject().searchCharacter(formDataModel.getObject()
+																							 .getLocation(),
+																	   			formDataModel.getObject()
+																	   						 .getRealm(),
+																	   			formDataModel.getObject()
+																	   						 .getName());
+				responseText.setDefaultModel(Model.of(restResult));
 			}
 		};
 		
@@ -83,7 +91,37 @@ public class CharacterSearchPanel extends Panel {
 		
 		TextField<String> characterName = new TextField<>("name");
 
-		Button submit = new Button("search");
+		AjaxButton addCharacterButton = new AjaxButton("add-character-button") {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+				super.onSubmit(target, form);
+				target.add(responseText.setDefaultModel(Model.of("Character was added to your account!")));
+				
+			}
+			
+		};
+		addCharacterButton.setVisible(isSignedIn);
+		
+		AjaxButton submit = new AjaxButton("search") {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+				super.onSubmit(target, form);
+				target.add(responseText);
+			}
+			
+		};
 		submit.add(new AjaxFormComponentUpdatingBehavior("onclick") {
 			
 			/**
@@ -100,6 +138,7 @@ public class CharacterSearchPanel extends Panel {
 		searchForm.add(realms);
 		searchForm.add(characterName);
 		searchForm.add(submit);
+		searchForm.add(addCharacterButton);
 		
 		add(searchForm);
 		add(responseText);

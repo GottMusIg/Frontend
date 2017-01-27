@@ -7,6 +7,7 @@ import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -17,6 +18,7 @@ import com.gottmusig.GottMusIgSession;
 import com.gottmusig.account.domain.api.AccountAdministration;
 import com.gottmusig.models.AccountServiceProxyModel;
 import com.gottmusig.pages.account.AccountFeedbackPage;
+import com.gottmusig.pages.account.RegistryPage;
 
 public class SignInPanel extends Panel {
 
@@ -64,9 +66,20 @@ public class SignInPanel extends Panel {
 		
 		signInForm.add(username);
 		signInForm.add(password);
+		signInForm.add(new Link<RegistryPage>("account-registry-link") {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public void onClick() {
+				throw new RestartResponseAtInterceptPageException(RegistryPage.class);
+			}
+		});
 		
 		add(signInForm);
-		
 	}
 	
 	public static class SignInFormData implements Serializable {

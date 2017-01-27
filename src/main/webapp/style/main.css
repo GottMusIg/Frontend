@@ -51,6 +51,7 @@ nav ul li {
     box-shadow: -1px 0px 0px 0px #999;
     position: relative;
     cursor: initial;
+    padding: 0px;
 }
 .nav-right img {
     position: absolute;
@@ -67,15 +68,15 @@ nav ul li {
     color: #FFFFFF;
     float: left;
     left: -2px;
-    margin-top: 25px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     display: none;
 }
-.nav-right:hover .dropdown {
+.nav-right:hover .dropdown, .dropdown:hover {
     display: block;
 }
+
 nav ul li:hover {
     background: rgba(0, 0, 0, 0.8);
     color: #68BE43;
@@ -83,6 +84,13 @@ nav ul li:hover {
 nav form input {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+#sign-in-link {
+	display: block;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	padding-left: 50px;
+	padding-right: 25px;
 }
 form input {
     border: 1px #58b72f solid;
