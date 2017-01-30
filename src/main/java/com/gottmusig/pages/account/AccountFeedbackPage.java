@@ -9,6 +9,7 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import com.gottmusig.GottMusIgSession;
 import com.gottmusig.components.basics.FooterPanel;
 import com.gottmusig.components.basics.HeaderPanel;
 import com.gottmusig.pages.HomePage;
@@ -23,7 +24,7 @@ public class AccountFeedbackPage extends WebPage {
 	public AccountFeedbackPage(final PageParameters parameters) {
 		super(parameters);
 		
-		final boolean isSignedIn = AuthenticatedWebSession.get().isSignedIn();
+		final GottMusIgSession session = (GottMusIgSession) AuthenticatedWebSession.get();
 		
 		IModel<String> feedbackModel = new AbstractReadOnlyModel<String>() {
 
@@ -35,8 +36,8 @@ public class AccountFeedbackPage extends WebPage {
 			@Override
 			public String getObject() {
 				StringBuffer feedback = new StringBuffer("You are succesfully ");
-				if(isSignedIn) {
-					feedback.append("signed in.");
+				if(session.isSignedIn()) {
+					feedback.append("signed in " + session.getUsername() + ".");
 				} else {
 					feedback.append("signed out.");
 				}
@@ -57,7 +58,7 @@ public class AccountFeedbackPage extends WebPage {
         	}
         	
         };
-        charOverview.setVisible(isSignedIn);
+        charOverview.setVisible(session.isSignedIn());
         
         add(new HeaderPanel("header"));
         add(new Label("feedback", feedbackModel));

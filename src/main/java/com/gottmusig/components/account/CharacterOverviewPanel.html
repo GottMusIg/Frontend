@@ -7,7 +7,7 @@
 <body>
 	<wicket:panel>
         <h1>
-            Your Characters
+            Your Characters <label wicket:id="username"></label>
         </h1>
        	<table id="character-table">
        		<thead>
@@ -19,64 +19,20 @@
        			</tr>
        		</thead>
        		<tbody>
-	       		<tr>
-	       			<td>
+	       		<tr wicket:id="characters">
+	       			<td wicket:id="character-name">
 						Taurosso
 		        	</td>
-		        	<td>
+		        	<td wicket:id="character-specification">
 						Protection Warrior
 		        	</td>
 		        	
-		        	<td>
+		        	<td wicket:id="character-realm">
 						Krag'jin
 		        	</td>
-		        	<td>
+		        	<td wicket:id="character-dps">
 						860
 		        	</td>
-	        	</tr>
-	       		<tr>
-	       			<td>
-						Devillin
-		        	</td>
-		        	<td>
-						Havoc Demon Hunter
-		        	</td>
-		        	
-		        	<td>
-						Krag'jin
-		        	</td>
-		        	<td>
-						858
-		        	</td>
-	        	</tr>
-	       		<tr>
-	       			<td>
-						Holyoria
-		        	</td>
-		        	<td>
-						Holy Priest
-		        	</td>
-		        	
-		        	<td>
-						Krag'jin
-		        	</td>
-		        	<td>
-						800
-		        	</td>
-	        	</tr>
-	       		<tr>
-	       			<td>
-						Denvira
-		        	</td>
-		        	<td>
-						Fire Mage
-		        	</td>
-		        	<td>
-						Krag'jin
-		        	</td>
-		        	<td>
-						800
-					</td>
 	        	</tr>
 			</tbody>
        	</table>

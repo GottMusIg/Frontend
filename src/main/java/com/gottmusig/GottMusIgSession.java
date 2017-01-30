@@ -9,6 +9,8 @@ import org.apache.wicket.request.Request;
 import com.gottmusig.account.domain.api.Account;
 import com.gottmusig.account.domain.api.AccountAdministration;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class GottMusIgSession extends AuthenticatedWebSession {
 
 	/**
@@ -40,13 +42,7 @@ public class GottMusIgSession extends AuthenticatedWebSession {
 	
 	@Override
 	protected boolean authenticate(String username, String password) {
-		if(username.equals("Test") 
-		   && password.equals("6e88464163c155be27bdba872861b7188a7ea1486c9fd66d82e50754ea916514")) {
-			this.username = username;
-			signIn(true);
-			return true;
-		}
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override

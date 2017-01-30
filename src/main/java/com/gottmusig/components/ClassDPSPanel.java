@@ -22,6 +22,7 @@ public class ClassDPSPanel extends Panel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	//TODO fix markup - li instead of ul for ListView.
 	public ClassDPSPanel(String id,
 						 String title,
 						 SpecificationDPSListModel specificationDPSModel) {

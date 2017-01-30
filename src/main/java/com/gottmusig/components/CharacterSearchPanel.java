@@ -75,7 +75,7 @@ public class CharacterSearchPanel extends Panel {
 		realms.setOutputMarkupId(true);
 		
 		DropDownChoice<Location> location = new DropDownChoice<>("location", locationsListModel);
-		location.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+		location.add(new AjaxFormComponentUpdatingBehavior("change") {
 			
 			/**
 			 * 
@@ -122,7 +122,7 @@ public class CharacterSearchPanel extends Panel {
 			}
 			
 		};
-		submit.add(new AjaxFormComponentUpdatingBehavior("onclick") {
+		submit.add(new AjaxFormComponentUpdatingBehavior("click") {
 			
 			/**
 			 * 

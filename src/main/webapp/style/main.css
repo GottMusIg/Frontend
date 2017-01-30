@@ -194,6 +194,7 @@ td, th {
 	padding: 15px;
 	margin-top: 5px;
 	border-radius: 3px;
+	box-shadow: 2px 2px 3px #000;
 }
 #main-content-wrapper ul li {
     position: relative;

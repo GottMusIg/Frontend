@@ -15,7 +15,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.gottmusig.account.domain.api.AccountAdministration;
-import com.gottmusig.models.AccountServiceProxyModel;
+import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.pages.HomePage;
 import com.gottmusig.validators.StrongPasswordValidator;
 
@@ -27,7 +27,7 @@ public class RegistryPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 
 	
-	public RegistryPanel(String id, final AccountServiceProxyModel<AccountAdministration> accAdminModel) {
+	public RegistryPanel(String id, final ServiceProxyModel<AccountAdministration> accAdminModel) {
 			super(id, Model.of(new RegistryFormData()));
 
 		final IModel<RegistryFormData> formDataModel = new CompoundPropertyModel<>((RegistryFormData) getDefaultModelObject());

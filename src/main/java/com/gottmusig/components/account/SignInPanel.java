@@ -16,7 +16,7 @@ import org.apache.wicket.model.Model;
 
 import com.gottmusig.GottMusIgSession;
 import com.gottmusig.account.domain.api.AccountAdministration;
-import com.gottmusig.models.AccountServiceProxyModel;
+import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.pages.account.AccountFeedbackPage;
 import com.gottmusig.pages.account.RegistryPage;
 
@@ -27,7 +27,7 @@ public class SignInPanel extends Panel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SignInPanel(String id, final AccountServiceProxyModel<AccountAdministration> accAdminModel) {
+	public SignInPanel(String id, final ServiceProxyModel<AccountAdministration> accAdminModel) {
 		super(id, Model.of(new SignInFormData()));
 
 		final IModel<SignInFormData> formDataModel = new CompoundPropertyModel<>((SignInFormData) getDefaultModelObject());

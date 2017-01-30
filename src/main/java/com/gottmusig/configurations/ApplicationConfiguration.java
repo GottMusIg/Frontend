@@ -9,7 +9,6 @@ import com.gottmusig.GottmusigApplication;
 import com.gottmusig.account.domain.api.AccountAdministration;
 import com.gottmusig.dpsdifference.configuration.DPSDifferenceConfiguration;
 import com.gottmusig.dpsdifference.domain.api.DPSDifference;
-import com.gottmusig.models.AccountServiceProxyModel;
 import com.gottmusig.models.RealmLocationListModel;
 import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.models.SpecificationDPSListModel;
@@ -45,8 +44,8 @@ public class ApplicationConfiguration {
 	}
 	
 	@Bean
-	public AccountServiceProxyModel<AccountAdministration> accountAdministrationModel() {
-		return new AccountServiceProxyModel<AccountAdministration>(accountAdministration);
+	public ServiceProxyModel<AccountAdministration> accountAdministrationModel() {
+		return new ServiceProxyModel<AccountAdministration>(accountAdministration);
 	}
 	
 }

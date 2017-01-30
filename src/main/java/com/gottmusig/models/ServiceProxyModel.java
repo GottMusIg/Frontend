@@ -13,7 +13,12 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 
 public class ServiceProxyModel<S> extends AbstractReadOnlyModel<S>{
 
-    private volatile S service;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private volatile S service;
 
     public ServiceProxyModel(S service) {
         this.service = service;
