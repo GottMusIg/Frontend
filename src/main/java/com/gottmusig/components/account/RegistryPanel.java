@@ -14,11 +14,17 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import com.gottmusig.account.domain.api.Account;
 import com.gottmusig.account.domain.api.AccountAdministration;
 import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.pages.HomePage;
 import com.gottmusig.validators.StrongPasswordValidator;
 
+/**
+ * These panel is the default registy panel for an {@link Account}.
+ * 
+ * @author kkalmus
+ */
 public class RegistryPanel extends Panel {
 
 	/**

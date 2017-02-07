@@ -7,6 +7,11 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import com.gottmusig.dpsdifference.domain.api.DPSDifference;
 import com.gottmusig.dpsdifference.domain.api.SpecificationDPS;
 
+/**
+ * {@link AbstractReadOnlyModel} 
+ * 
+ * @author kkalmus
+ */
 public class SpecificationDPSListModel extends AbstractReadOnlyModel<List<SpecificationDPS>> {
 
 	/**

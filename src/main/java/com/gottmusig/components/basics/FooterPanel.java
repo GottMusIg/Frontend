@@ -3,8 +3,14 @@ package com.gottmusig.components.basics;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.gottmusig.GottmusigApplication;
 import com.gottmusig.pages.statics.AboutPage;
 
+/**
+ * Default footer for the {@link GottmusigApplication}.
+ * 
+ * @author kkalmus
+ */
 public class FooterPanel extends Panel {
 
 	/**

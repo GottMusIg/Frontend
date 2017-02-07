@@ -5,6 +5,14 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import com.gottmusig.pages.account.SignInPage;
 
+/**
+ * These panel is for the {@link NavigationPanel}.
+ * It includes an {@link SignInDropDownPanel} for sign
+ * in via drop down and a {@link BookmarkablePageLink}
+ * to the {@link SignInPage}.
+ * 
+ * @author kkalmus
+ */
 public class SignInLinkPanel extends Panel {
 
 	/**

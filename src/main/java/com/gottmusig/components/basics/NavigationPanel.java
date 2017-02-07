@@ -12,6 +12,11 @@ import com.gottmusig.pages.account.AccountFeedbackPage;
 import com.gottmusig.pages.account.CharacterOverviewPage;
 import com.gottmusig.pages.statics.AboutPage;
 
+/**
+ * Default navigation for the {@link HeaderPanel}
+ * 
+ * @author kkalmus
+ */
 public class NavigationPanel extends Panel {
 
 	/**
@@ -55,6 +60,5 @@ public class NavigationPanel extends Panel {
 		add(signOutLink);
 		add(signInLinkPanel);
 	}
-
 	
 }

@@ -9,24 +9,17 @@ import com.gottmusig.pages.HomePage;
 import com.gottmusig.pages.account.SignInPage;
 
 /**
- * Application object for your web application.
- * If you want to run this application without deploying, run the Start class.
+ * Application object for GottMusIg-Frontend.
  * 
- * @see com.gottmusig.Start#main(String[])
+ * @author kkalmus
  */
 public class GottmusigApplication extends AuthenticatedWebApplication {
 	
-	/**
-	 * @see org.apache.wicket.Application#getHomePage()
-	 */
 	@Override
 	public Class<? extends WebPage> getHomePage() {
 		return HomePage.class;
 	}
 
-	/**
-	 * @see org.apache.wicket.Application#init()
-	 */
 	@Override
 	public void init() {
 		super.init();
@@ -34,13 +27,6 @@ public class GottmusigApplication extends AuthenticatedWebApplication {
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 		
 		getApplicationSettings().setAccessDeniedPage(HomePage.class);
-		
-//		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-//		ctx.register(DPSDifferenceConfiguration.class);
-//		ctx.refresh();
-//		getComponentInitializationListeners().add(new SpringComponentInjector(this, ctx));
-		
-		// add your configuration here
 	}
 
 	@Override

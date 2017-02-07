@@ -15,6 +15,11 @@ import com.gottmusig.models.SpecificationDPSListModel;
 import com.gottmusig.searchcharacter.domain.api.SearchCharacter;
 import com.gottmusig.searchcharacter.jpa.Location;
 
+/**
+ * Configuration class for the {@link GottmusigApplication}.
+ * 
+ * @author kkalmus
+ */
 @Configuration
 @Import( {DPSDifferenceConfiguration.class} )
 public class ApplicationConfiguration {

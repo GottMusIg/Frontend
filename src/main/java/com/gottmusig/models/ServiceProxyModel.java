@@ -8,9 +8,18 @@
 package com.gottmusig.models;
 
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 import org.apache.wicket.model.AbstractReadOnlyModel;
 
+/**
+ * These is an {@link AbstractReadOnlyModel} for Services 
+ * which not supports {@link Serializable}.
+ * 
+ * @author kkalmus
+ *
+ * @param <S> an Service.
+ */
 public class ServiceProxyModel<S> extends AbstractReadOnlyModel<S>{
 
     /**

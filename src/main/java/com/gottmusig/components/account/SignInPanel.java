@@ -15,11 +15,17 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.gottmusig.GottMusIgSession;
+import com.gottmusig.account.domain.api.Account;
 import com.gottmusig.account.domain.api.AccountAdministration;
 import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.pages.account.AccountFeedbackPage;
 import com.gottmusig.pages.account.RegistryPage;
 
+/**
+ * These panel is the defaul sign in for an {@link Account}.
+ *  
+ * @author kkalmus
+ */
 public class SignInPanel extends Panel {
 
 	/**
@@ -82,6 +88,11 @@ public class SignInPanel extends Panel {
 		add(signInForm);
 	}
 	
+	/**
+	 * Default data object for {@link SignInPanel}
+	 * 
+	 * @author kkalmus
+	 */
 	public static class SignInFormData implements Serializable {
 		
 		/**

@@ -6,7 +6,11 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 
 import com.gottmusig.searchcharacter.jpa.Location;
 
-
+/**
+ * {@link AbstractReadOnlyModel} for {@link Location}.
+ * 
+ * @author kkalmus
+ */
 public class RealmLocationListModel extends AbstractReadOnlyModel<List<Location>> {
 
 	/**

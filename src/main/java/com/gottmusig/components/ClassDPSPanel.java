@@ -15,6 +15,12 @@ import org.apache.wicket.model.Model;
 import com.gottmusig.dpsdifference.domain.api.SpecificationDPS;
 import com.gottmusig.models.SpecificationDPSListModel;
 
+/**
+ * These panel shows the dps difference 
+ * between each {@link SpecificationDPS}.
+ * 
+ * @author kkalmus
+ */
 public class ClassDPSPanel extends Panel {
 
 	/**

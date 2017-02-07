@@ -11,6 +11,11 @@ import com.gottmusig.account.domain.api.AccountAdministration;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+/**
+ * These is the default {@link AuthenticatedWebSession} for the GottMusIg-Application.
+ * 
+ * @author kkalmus
+ */
 public class GottMusIgSession extends AuthenticatedWebSession {
 
 	/**
