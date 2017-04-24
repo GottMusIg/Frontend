@@ -6,14 +6,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.gottmusig.GottmusigApplication;
-import com.gottmusig.account.domain.api.AccountAdministration;
-import com.gottmusig.dpsdifference.configuration.DPSDifferenceConfiguration;
-import com.gottmusig.dpsdifference.domain.api.DPSDifference;
+import com.gottmusig.database.service.configuration.DatabaseServiceConfiguration;
+import com.gottmusig.database.service.domain.GottMusIg;
+import com.gottmusig.database.service.domain.account.AccountService;
+import com.gottmusig.database.service.domain.character.CharacterService;
+import com.gottmusig.database.service.domain.realm.RealmService;
+import com.gottmusig.database.service.domain.realm.jpa.Location;
 import com.gottmusig.models.RealmLocationListModel;
 import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.models.SpecificationDPSListModel;
-import com.gottmusig.searchcharacter.domain.api.SearchCharacter;
-import com.gottmusig.searchcharacter.jpa.Location;
 
 /**
  * Configuration class for the {@link GottmusigApplication}.
@@ -21,12 +22,10 @@ import com.gottmusig.searchcharacter.jpa.Location;
  * @author kkalmus
  */
 @Configuration
-@Import( {DPSDifferenceConfiguration.class} )
+@Import( {DatabaseServiceConfiguration.class} )
 public class ApplicationConfiguration {
 
-	@Autowired DPSDifference dpsDifference;
-	@Autowired SearchCharacter searchChar;
-	@Autowired AccountAdministration accountAdministration;
+	@Autowired GottMusIg gottMusIg;
 	
 	@Bean
 	public GottmusigApplication gottmusigApplication() {
@@ -35,7 +34,7 @@ public class ApplicationConfiguration {
 	
 	@Bean
 	public SpecificationDPSListModel specificationDPSListModel() {
-		return new SpecificationDPSListModel(dpsDifference);
+		return new SpecificationDPSListModel(gottMusIg.dpsDifferenceService());
 	}
 	
 	@Bean
@@ -44,13 +43,18 @@ public class ApplicationConfiguration {
 	}
 	
 	@Bean
-	public ServiceProxyModel<SearchCharacter> searchCharacterModel() {
-		return new ServiceProxyModel<>(searchChar);
+	public ServiceProxyModel<CharacterService> searchCharacterModel() {
+		return new ServiceProxyModel<>(gottMusIg.characterService());
 	}
 	
 	@Bean
-	public ServiceProxyModel<AccountAdministration> accountAdministrationModel() {
-		return new ServiceProxyModel<AccountAdministration>(accountAdministration);
+	public ServiceProxyModel<AccountService> accountAdministrationModel() {
+		return new ServiceProxyModel<AccountService>(gottMusIg.accountService());
+	}
+	
+	@Bean
+	public ServiceProxyModel<RealmService> realmServiceModel() {
+		return new ServiceProxyModel<RealmService>(gottMusIg.realmService());
 	}
 	
 }

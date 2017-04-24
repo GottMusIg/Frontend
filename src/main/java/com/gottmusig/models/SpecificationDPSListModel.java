@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.wicket.model.AbstractReadOnlyModel;
 
-import com.gottmusig.dpsdifference.domain.api.DPSDifference;
-import com.gottmusig.dpsdifference.domain.api.SpecificationDPS;
+import com.gottmusig.database.service.domain.dpsdifference.DPSDifferenceService;
+import com.gottmusig.database.service.domain.dpsdifference.SpecificationDPS;
 
 /**
  * {@link AbstractReadOnlyModel} 
@@ -22,9 +22,9 @@ public class SpecificationDPSListModel extends AbstractReadOnlyModel<List<Specif
 	private List<SpecificationDPS> specDps;
 	private int maxDps;
 
-	public SpecificationDPSListModel(DPSDifference dpsDifference) {
-		this.specDps = dpsDifference.getAllDPSValues();
-		this.maxDps = dpsDifference.getMaxDPSValue();
+	public SpecificationDPSListModel(DPSDifferenceService dpsDifferenceServic) {
+		this.specDps = dpsDifferenceServic.getDPSDifference();
+		this.maxDps = dpsDifferenceServic.getMaxDPSValue();
 	}
 	
 	@Override

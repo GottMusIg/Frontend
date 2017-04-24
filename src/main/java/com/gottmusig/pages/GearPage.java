@@ -9,9 +9,10 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import com.gottmusig.components.CharacterSearchPanel;
 import com.gottmusig.components.basics.FooterPanel;
 import com.gottmusig.components.basics.HeaderPanel;
+import com.gottmusig.database.service.domain.character.CharacterService;
+import com.gottmusig.database.service.domain.realm.RealmService;
 import com.gottmusig.models.RealmLocationListModel;
 import com.gottmusig.models.ServiceProxyModel;
-import com.gottmusig.searchcharacter.domain.api.SearchCharacter;
 
 public class GearPage extends WebPage implements Serializable {
 
@@ -24,7 +25,10 @@ public class GearPage extends WebPage implements Serializable {
 	private RealmLocationListModel locationsModel;
 
 	@SpringBean
-	ServiceProxyModel<SearchCharacter> searchCharModel;
+	ServiceProxyModel<CharacterService> searchCharModel;
+	
+	@SpringBean
+	ServiceProxyModel<RealmService> realmServiceModel;
 	
 	public GearPage(final PageParameters parameters) {
 		super(parameters);
@@ -33,7 +37,8 @@ public class GearPage extends WebPage implements Serializable {
 		
 		add(new CharacterSearchPanel("character-search",
 									 locationsModel,
-									 searchCharModel));
+									 searchCharModel,
+									 realmServiceModel));
 		
 		add(new FooterPanel("footer"));
 	}

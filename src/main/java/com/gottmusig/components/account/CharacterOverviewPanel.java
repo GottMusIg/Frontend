@@ -13,11 +13,13 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 
 import com.gottmusig.GottMusIgSession;
-import com.gottmusig.account.domain.api.Account;
-import com.gottmusig.account.domain.api.AccountAdministration;
-import com.gottmusig.character.domain.api.Character;
+import com.gottmusig.database.service.domain.account.Account;
+import com.gottmusig.database.service.domain.account.AccountService;
+import com.gottmusig.database.service.domain.character.Character;
 import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.pages.GearPage;
+
+import jersey.repackaged.com.google.common.collect.Lists;
 
 /**
  * These panel shows all {@link Character} of an {@link Account}.
@@ -32,17 +34,17 @@ public class CharacterOverviewPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 
 	public CharacterOverviewPanel(String id,
-								  ServiceProxyModel<AccountAdministration> accountAdminModel) {
+								  ServiceProxyModel<AccountService> accountServiceModel) {
 		super(id);
 		
 		Model<String> usernameModel = Model.of(((GottMusIgSession) AuthenticatedWebSession.get()).getUsername());
 		
 		add(new Label("username", usernameModel));
 
-		Optional<Account> account = accountAdminModel.getObject().searchAccount(usernameModel.getObject());
+		Optional<Account> account = accountServiceModel.getObject().searchAccount(usernameModel.getObject());
 		
 		if(account.isPresent()) {
-			ListModel<Character> characterModel = new ListModel<>(account.get().getCharacters());
+			ListModel<Character> characterModel = new ListModel<>(Lists.newArrayList(account.get().getCharacters()));
 			
 			ListView<Character> characterView = new ListView<Character>("characters", characterModel) {
 	

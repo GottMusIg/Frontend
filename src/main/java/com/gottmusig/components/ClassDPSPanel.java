@@ -12,7 +12,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
-import com.gottmusig.dpsdifference.domain.api.SpecificationDPS;
+import com.gottmusig.database.service.domain.dpsdifference.SpecificationDPS;
 import com.gottmusig.models.SpecificationDPSListModel;
 
 /**
@@ -64,7 +64,7 @@ public class ClassDPSPanel extends Panel {
 				
 				try {
 					item.add(new Label("dps", Model.of(format.parse("" + item.getModelObject()
-																			 .getSpecificationDPS())
+																			 .getDPS())
 															 .floatValue())));
 				} catch (ParseException e) {
 					e.printStackTrace();
@@ -81,7 +81,7 @@ public class ClassDPSPanel extends Panel {
 				
 				int maxDps = ((SpecificationDPSListModel) getDefaultModel()).getMaxDPS();
 				
-				int dps = item.getModelObject().getSpecificationDPS() * 100 / maxDps;
+				int dps = item.getModelObject().getDPS() * 100 / maxDps;
 				
 				dpsDiagram.add(AttributeModifier.append("style", "width: " + dps + "%;"));
 				

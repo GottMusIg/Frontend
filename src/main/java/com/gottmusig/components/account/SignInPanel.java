@@ -15,8 +15,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.gottmusig.GottMusIgSession;
-import com.gottmusig.account.domain.api.Account;
-import com.gottmusig.account.domain.api.AccountAdministration;
+import com.gottmusig.database.service.domain.account.Account;
+import com.gottmusig.database.service.domain.account.AccountService;
 import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.pages.account.AccountFeedbackPage;
 import com.gottmusig.pages.account.RegistryPage;
@@ -33,7 +33,7 @@ public class SignInPanel extends Panel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SignInPanel(String id, final ServiceProxyModel<AccountAdministration> accAdminModel) {
+	public SignInPanel(String id, final ServiceProxyModel<AccountService> accountServiceModel) {
 		super(id, Model.of(new SignInFormData()));
 
 		final IModel<SignInFormData> formDataModel = new CompoundPropertyModel<>((SignInFormData) getDefaultModelObject());
@@ -56,7 +56,7 @@ public class SignInPanel extends Panel {
 				boolean isAuth = ((GottMusIgSession)AuthenticatedWebSession.get())
 																		   .custumSignIn(username,
 																				   		 sha512,
-																				   		 accAdminModel.getObject());
+																				   		 accountServiceModel.getObject());
 				if(isAuth) {
 					throw new RestartResponseAtInterceptPageException(AccountFeedbackPage.class);
 				}

@@ -3,6 +3,7 @@ package com.gottmusig.components;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
@@ -21,11 +22,13 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 
-import com.gottmusig.character.domain.api.Character;
+import com.gottmusig.database.service.domain.character.Character;
+import com.gottmusig.database.service.domain.character.CharacterService;
+import com.gottmusig.database.service.domain.realm.Realm;
+import com.gottmusig.database.service.domain.realm.RealmService;
+import com.gottmusig.database.service.domain.realm.jpa.Location;
 import com.gottmusig.models.RealmLocationListModel;
 import com.gottmusig.models.ServiceProxyModel;
-import com.gottmusig.searchcharacter.domain.api.SearchCharacter;
-import com.gottmusig.searchcharacter.jpa.Location;
 
 /**
  * These panel is for searching {@link Character}
@@ -47,7 +50,8 @@ public class CharacterSearchPanel extends Panel {
 
 	public CharacterSearchPanel(String id,
 								RealmLocationListModel locationsListModel,
-								final ServiceProxyModel<SearchCharacter> searchCharModel) {
+								final ServiceProxyModel<CharacterService> searchCharModel,
+								final ServiceProxyModel<RealmService> realmService) {
 		super(id, Model.of(new CharacterSearchFormData()));
 		this.locationsListModel = locationsListModel;
 		
@@ -56,7 +60,13 @@ public class CharacterSearchPanel extends Panel {
 		final IModel<CharacterSearchFormData> formDataModel = new CompoundPropertyModel<>((CharacterSearchFormData)getDefaultModelObject());
 		
 		final IModel<List<String>> realmListModel = new ListModel<String>();
-		realmListModel.setObject(searchCharModel.getObject().getRealms(locationsListModel.getObject().iterator().next()));
+		realmListModel.setObject(realmService.getObject()
+											 .getAllRealms(locationsListModel.getObject()
+													 						 .iterator()
+													 						 .next())
+											 .stream()
+											 .map(Realm::getName)
+											 .collect(Collectors.toList()));
 		
 		final IModel<String> characterImageModel = Model.of("");
 		
@@ -102,8 +112,6 @@ public class CharacterSearchPanel extends Panel {
 
 				Optional<Character> restResult = searchCharModel.getObject()
 																.searchCharacter(formDataModel.getObject()
-																						  	  .getLocation(),
-																			     formDataModel.getObject()
 																	   					      .getRealm(),
 																	   		     formDataModel.getObject()
 																	   					      .getName());
@@ -131,7 +139,12 @@ public class CharacterSearchPanel extends Panel {
 			private static final long serialVersionUID = 1L;
 
 			protected void onUpdate(AjaxRequestTarget target) {
-				realmListModel.setObject(searchCharModel.getObject().getRealms(formDataModel.getObject().getLocation()));
+				realmListModel.setObject(realmService.getObject()
+													 .getAllRealms(formDataModel.getObject()
+															 					.getLocation())
+													 .stream()
+													 .map(Realm::getName)
+													 .collect(Collectors.toList()));
 				target.add(realms);
 			}
 			

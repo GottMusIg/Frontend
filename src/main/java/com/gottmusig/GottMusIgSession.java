@@ -6,8 +6,8 @@ import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.request.Request;
 
-import com.gottmusig.account.domain.api.Account;
-import com.gottmusig.account.domain.api.AccountAdministration;
+import com.gottmusig.database.service.domain.account.Account;
+import com.gottmusig.database.service.domain.account.AccountService;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -33,8 +33,8 @@ public class GottMusIgSession extends AuthenticatedWebSession {
 		return username;
 	}
 	
-	public boolean custumSignIn(String username, String password, AccountAdministration accAdmin) {
-		Optional<Account> account = accAdmin.searchAccount(username);
+	public boolean custumSignIn(String username, String password, AccountService accountService) {
+		Optional<Account> account = accountService.searchAccount(username);
 		if(account.isPresent()) {
 			if(account.get().getPassword().equals(password)) {
 				this.username = username;

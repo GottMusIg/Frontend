@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.wicket.model.AbstractReadOnlyModel;
 
-import com.gottmusig.searchcharacter.jpa.Location;
+import com.gottmusig.database.service.domain.realm.jpa.Location;
 
 /**
  * {@link AbstractReadOnlyModel} for {@link Location}.

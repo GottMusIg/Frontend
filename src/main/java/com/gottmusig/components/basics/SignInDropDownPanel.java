@@ -13,9 +13,9 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.gottmusig.GottMusIgSession;
-import com.gottmusig.account.domain.api.AccountAdministration;
 import com.gottmusig.components.account.RegistryPanel;
 import com.gottmusig.components.account.SignInPanel.SignInFormData;
+import com.gottmusig.database.service.domain.account.AccountService;
 import com.gottmusig.models.ServiceProxyModel;
 import com.gottmusig.pages.account.AccountFeedbackPage;
 import com.gottmusig.pages.account.RegistryPage;
@@ -30,7 +30,7 @@ public class SignInDropDownPanel extends Panel {
 
 	//TODO implements SignInPanel
 	@SpringBean
-	private ServiceProxyModel<AccountAdministration> accountAdminModel;
+	private ServiceProxyModel<AccountService> accountServiceModel;
 	
 	public SignInDropDownPanel(String id) {
 		super(id, Model.of(new SignInFormData()));
@@ -55,7 +55,7 @@ public class SignInDropDownPanel extends Panel {
 				boolean isAuth = ((GottMusIgSession)AuthenticatedWebSession.get())
 																		   .custumSignIn(username,
 																				   		 sha512,
-																				   		 accountAdminModel.getObject());
+																				   		 accountServiceModel.getObject());
 				if(isAuth) {
 					throw new RestartResponseAtInterceptPageException(AccountFeedbackPage.class);
 				} else {
