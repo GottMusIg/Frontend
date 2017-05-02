@@ -5,12 +5,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
-import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.markup.html.WebComponent;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -22,6 +21,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 
+import com.gottmusig.components.character.CharacterGearPanel;
 import com.gottmusig.database.service.domain.character.Character;
 import com.gottmusig.database.service.domain.character.CharacterService;
 import com.gottmusig.database.service.domain.realm.Realm;
@@ -41,10 +41,6 @@ public class CharacterSearchPanel extends Panel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private static final String WOW_RENDER_PAGE = "http://render-eu.worldofwarcraft.com/character/";
-	private static final String WOW_RENDER_TYPE = "-profilemain.jpg";
-	private static final String REPLACE = "-avatar.jpg";
 	
 	private IModel<List<Location>> locationsListModel;
 
@@ -68,8 +64,6 @@ public class CharacterSearchPanel extends Panel {
 											 .map(Realm::getName)
 											 .collect(Collectors.toList()));
 		
-		final IModel<String> characterImageModel = Model.of("");
-		
 		final Label responseText = new Label("blizz");
 		responseText.setOutputMarkupId(true);
 		
@@ -78,54 +72,12 @@ public class CharacterSearchPanel extends Panel {
 		
 		final IModel<Character> characterModel = Model.of();
 		
-		//TODO Background-image instead of img
-		final WebComponent characterImage = new WebComponent("char-image", characterImageModel) {
-			
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected void onComponentTag(ComponentTag tag) {
-				super.onComponentTag(tag);
-				if(getDefaultModelObject() != null) {
-					checkComponentTag(tag, "img");
-					tag.put("src", getDefaultModelObjectAsString());
-				}
-			}
-			
-		};
-		characterImage.setOutputMarkupId(true);
+		final CharacterGearPanel gearPanel = new CharacterGearPanel("character-gear-panel", characterModel);
+		gearPanel.setOutputMarkupId(true);
+		gearPanel.setOutputMarkupPlaceholderTag(true);
+		gearPanel.setVisible(false);
 		
-		Form<CharacterSearchFormData> searchForm = new Form<CharacterSearchFormData>("character-search-form",
-																					 formDataModel) {
-			
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected void onSubmit() {
-				super.onSubmit();
-
-				Optional<Character> restResult = searchCharModel.getObject()
-																.searchCharacter(formDataModel.getObject()
-																	   					      .getRealm(),
-																	   		     formDataModel.getObject()
-																	   					      .getName());
-				if(restResult.isPresent()) {
-					String characterImageString = restResult.get().getThumbnailId();
-					characterImageModel.setObject(WOW_RENDER_PAGE + characterImageString + WOW_RENDER_TYPE);
-					responseText.setDefaultModel(Model.of(restResult.get().getName()));
-					characterModel.setObject(restResult.get());
-				} else {
-					error("Character not found. ");
-				}
-			}
-		};
-		
+		Form<CharacterSearchFormData> searchForm = new Form<>("character-search-form", formDataModel);
 		
 		final DropDownChoice<String> realms = new DropDownChoice<String>("realm", realmListModel);
 		realms.setOutputMarkupId(true);
@@ -175,16 +127,31 @@ public class CharacterSearchPanel extends Panel {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			
+		      
 			@Override
 			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				super.onSubmit(target, form);
-				target.add(responseText);
-				target.add(characterImage);
-				target.add(feedbackpanel);
-			}
-			
-		};
+				Optional<Character> restResult = searchCharModel.getObject()
+																.searchCharacter(formDataModel.getObject()
+																							  .getRealm(),
+																				 formDataModel.getObject()
+																				 			  .getName());
+				if(restResult.isPresent()) {
+					characterModel.setObject(restResult.get());
+					gearPanel.showGear(characterModel);
+					gearPanel.setVisible(true);
+					Session.get().getFeedbackMessages().clear();
+		        } else {
+		        	characterModel.setObject(null);
+		        	gearPanel.setVisible(false);
+		        	error("Character not found. ");
+		        }
+		        target.add(gearPanel);
+		        target.add(responseText);
+		        target.add(feedbackpanel);
+		      }
+		      
+		    };
 		submit.add(new AjaxFormComponentUpdatingBehavior("click") {
 			
 			/**
@@ -206,7 +173,7 @@ public class CharacterSearchPanel extends Panel {
 		add(feedbackpanel);
 		add(searchForm);
 		add(responseText);
-		add(characterImage);
+		add(gearPanel);
 		
 	}
 	
