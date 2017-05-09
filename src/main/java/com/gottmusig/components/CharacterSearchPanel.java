@@ -21,6 +21,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 
+import com.gottmusig.GottMusIgSession;
 import com.gottmusig.components.character.CharacterGearPanel;
 import com.gottmusig.database.service.domain.character.Character;
 import com.gottmusig.database.service.domain.character.CharacterService;
@@ -42,18 +43,26 @@ public class CharacterSearchPanel extends Panel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private final IModel<CharacterSearchFormData> formDataModel;
+	private final ServiceProxyModel<CharacterService> searchCharModel;
+	private final IModel<Character> characterModel;
 	private IModel<List<Location>> locationsListModel;
-
+	
+	private final CharacterGearPanel gearPanel;
+	private final Label responseText;
+	private final FeedbackPanel feedbackpanel;
+	
 	public CharacterSearchPanel(String id,
 								RealmLocationListModel locationsListModel,
-								final ServiceProxyModel<CharacterService> searchCharModel,
+								ServiceProxyModel<CharacterService> searchCharModel,
 								final ServiceProxyModel<RealmService> realmService) {
 		super(id, Model.of(new CharacterSearchFormData()));
 		this.locationsListModel = locationsListModel;
+		this.searchCharModel = searchCharModel;
 		
 		final boolean isSignedIn = AuthenticatedWebSession.get().isSignedIn();
 		
-		final IModel<CharacterSearchFormData> formDataModel = new CompoundPropertyModel<>((CharacterSearchFormData)getDefaultModelObject());
+		formDataModel = new CompoundPropertyModel<>((CharacterSearchFormData)getDefaultModelObject());
 		
 		final IModel<List<String>> realmListModel = new ListModel<String>();
 		realmListModel.setObject(realmService.getObject()
@@ -64,15 +73,16 @@ public class CharacterSearchPanel extends Panel {
 											 .map(Realm::getName)
 											 .collect(Collectors.toList()));
 		
-		final Label responseText = new Label("blizz");
+		responseText = new Label("blizz");
 		responseText.setOutputMarkupId(true);
+		responseText.setOutputMarkupPlaceholderTag(true);
 		
-		final FeedbackPanel feedbackpanel = new FeedbackPanel("feedbackpanel");
+		feedbackpanel = new FeedbackPanel("feedbackpanel");
 		feedbackpanel.setOutputMarkupId(true);
 		
-		final IModel<Character> characterModel = Model.of();
+		characterModel = Model.of();
 		
-		final CharacterGearPanel gearPanel = new CharacterGearPanel("character-gear-panel", characterModel);
+		gearPanel = new CharacterGearPanel("character-gear-panel", characterModel);
 		gearPanel.setOutputMarkupId(true);
 		gearPanel.setOutputMarkupPlaceholderTag(true);
 		gearPanel.setVisible(false);
@@ -114,8 +124,12 @@ public class CharacterSearchPanel extends Panel {
 			@Override
 			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				super.onSubmit(target, form);
-				target.add(responseText.setDefaultModel(Model.of("Character was added to your account!")));
-				
+				searchCharacter(target);
+				target.add(responseText.setDefaultModel(Model.of("Character was added to your account!")).setVisible(true));
+				if(characterModel.getObject() != null) {
+					((GottMusIgSession) GottMusIgSession.get()).getAccount()
+															   .addCharacter(characterModel.getObject());
+				}
 			}
 			
 		};
@@ -131,38 +145,10 @@ public class CharacterSearchPanel extends Panel {
 			@Override
 			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				super.onSubmit(target, form);
-				Optional<Character> restResult = searchCharModel.getObject()
-																.searchCharacter(formDataModel.getObject()
-																							  .getRealm(),
-																				 formDataModel.getObject()
-																				 			  .getName());
-				if(restResult.isPresent()) {
-					characterModel.setObject(restResult.get());
-					gearPanel.showGear(characterModel);
-					gearPanel.setVisible(true);
-					Session.get().getFeedbackMessages().clear();
-		        } else {
-		        	characterModel.setObject(null);
-		        	gearPanel.setVisible(false);
-		        	error("Character not found. ");
-		        }
-		        target.add(gearPanel);
-		        target.add(responseText);
-		        target.add(feedbackpanel);
+				searchCharacter(target);
 		      }
 		      
-		    };
-		submit.add(new AjaxFormComponentUpdatingBehavior("click") {
-			
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			protected void onUpdate(AjaxRequestTarget target) {
-				target.add(responseText);
-			}
-		});
+	    };
 		
 		searchForm.add(location);
 		searchForm.add(realms);
@@ -175,6 +161,28 @@ public class CharacterSearchPanel extends Panel {
 		add(responseText);
 		add(gearPanel);
 		
+	}
+	
+	public void searchCharacter(AjaxRequestTarget target) {
+		Optional<Character> restResult = searchCharModel.getObject()
+														.searchCharacter(formDataModel.getObject()
+																					  .getRealm(),
+																		 formDataModel.getObject()
+																		 			  .getName());
+		if(restResult.isPresent()) {
+			characterModel.setObject(restResult.get());
+			gearPanel.showGear(characterModel);
+			gearPanel.setVisible(true);
+			Session.get().getFeedbackMessages().clear();
+		} else {
+			characterModel.setObject(null);
+			gearPanel.setVisible(false);
+			error("Character not found. ");
+		}
+		responseText.setVisible(false);
+		target.add(gearPanel);
+		target.add(responseText);
+		target.add(feedbackpanel);
 	}
 	
 	/**

@@ -37,7 +37,7 @@ public class CharacterOverviewPanel extends Panel {
 								  ServiceProxyModel<AccountService> accountServiceModel) {
 		super(id);
 		
-		Model<String> usernameModel = Model.of(((GottMusIgSession) AuthenticatedWebSession.get()).getUsername());
+		Model<String> usernameModel = Model.of(((GottMusIgSession) AuthenticatedWebSession.get()).getAccount().getUserName());
 		
 		add(new Label("username", usernameModel));
 

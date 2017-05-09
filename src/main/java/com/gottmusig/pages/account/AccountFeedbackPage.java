@@ -37,7 +37,7 @@ public class AccountFeedbackPage extends WebPage {
 			public String getObject() {
 				StringBuffer feedback = new StringBuffer("You are succesfully ");
 				if(session.isSignedIn()) {
-					feedback.append("signed in " + session.getUsername() + ".");
+					feedback.append("signed in " + session.getAccount().getUserName() + ".");
 				} else {
 					feedback.append("signed out.");
 				}

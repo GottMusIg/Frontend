@@ -23,21 +23,21 @@ public class GottMusIgSession extends AuthenticatedWebSession {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String username;
+	private Account account;
 	
 	public GottMusIgSession(Request request) {
 		super(request);
 	}
 
-	public String getUsername() {
-		return username;
+	public Account getAccount() {
+		return account;
 	}
 	
 	public boolean custumSignIn(String username, String password, AccountService accountService) {
 		Optional<Account> account = accountService.searchAccount(username);
 		if(account.isPresent()) {
 			if(account.get().getPassword().equals(password)) {
-				this.username = username;
+				this.account = account.get();
 				signIn(true);
 				return true;
 			}
@@ -58,7 +58,7 @@ public class GottMusIgSession extends AuthenticatedWebSession {
 	@Override
 	public void signOut() {
 		super.signOut();
-		username = null;
+		account = null;
 	}
 	
 }
