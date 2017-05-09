@@ -1,7 +1,5 @@
 package com.gottmusig.components.account;
 
-import java.util.Optional;
-
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -33,18 +31,22 @@ public class CharacterOverviewPanel extends Panel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private Model<Account> accountModel;
+	private ListModel<Character> characterModel;
+	
 	public CharacterOverviewPanel(String id,
-								  ServiceProxyModel<AccountService> accountServiceModel) {
+								  ServiceProxyModel<AccountService> accountAdminModel) {
 		super(id);
 		
-		Model<String> usernameModel = Model.of(((GottMusIgSession) AuthenticatedWebSession.get()).getAccount().getUserName());
+		accountModel = Model.of(accountAdminModel.getObject()
+												 .searchAccount(((GottMusIgSession) AuthenticatedWebSession.get()).getAccount()
+														 														  .getUserName())
+												 .get());
 		
-		add(new Label("username", usernameModel));
-
-		Optional<Account> account = accountServiceModel.getObject().searchAccount(usernameModel.getObject());
+		add(new Label("username", accountModel.getObject().getUserName()));
 		
-		if(account.isPresent()) {
-			ListModel<Character> characterModel = new ListModel<>(Lists.newArrayList(account.get().getCharacters()));
+		if(accountModel != null) {
+			characterModel = new ListModel<>(Lists.newArrayList(accountModel.getObject().getCharacters()));
 			
 			ListView<Character> characterView = new ListView<Character>("characters", characterModel) {
 	
@@ -74,6 +76,13 @@ public class CharacterOverviewPanel extends Panel {
 			add(characterView);
 		}		
 		add(new BookmarkablePageLink<>("add-character", GearPage.class));
+	}
+	
+	@Override
+	protected void onDetach() {
+		super.onDetach();
+		accountModel.detach();
+		characterModel.detach();
 	}
 	
 }

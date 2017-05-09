@@ -30,6 +30,7 @@ import com.gottmusig.database.service.domain.realm.RealmService;
 import com.gottmusig.database.service.domain.realm.jpa.Location;
 import com.gottmusig.models.RealmLocationListModel;
 import com.gottmusig.models.ServiceProxyModel;
+import com.gottmusig.pages.account.CharacterOverviewPage;
 
 /**
  * These panel is for searching {@link Character}
@@ -125,10 +126,11 @@ public class CharacterSearchPanel extends Panel {
 			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				super.onSubmit(target, form);
 				searchCharacter(target);
-				target.add(responseText.setDefaultModel(Model.of("Character was added to your account!")).setVisible(true));
 				if(characterModel.getObject() != null) {
+					target.add(responseText.setDefaultModel(Model.of("Character was added to your account!")).setVisible(true));
 					((GottMusIgSession) GottMusIgSession.get()).getAccount()
 															   .addCharacter(characterModel.getObject());
+					setResponsePage(CharacterOverviewPage.class);
 				}
 			}
 			
@@ -169,17 +171,17 @@ public class CharacterSearchPanel extends Panel {
 																					  .getRealm(),
 																		 formDataModel.getObject()
 																		 			  .getName());
+		Session.get().getFeedbackMessages().clear();
 		if(restResult.isPresent()) {
 			characterModel.setObject(restResult.get());
 			gearPanel.showGear(characterModel);
 			gearPanel.setVisible(true);
-			Session.get().getFeedbackMessages().clear();
 		} else {
 			characterModel.setObject(null);
 			gearPanel.setVisible(false);
 			error("Character not found. ");
 		}
-		responseText.setVisible(false);
+		responseText.setVisible(false);	
 		target.add(gearPanel);
 		target.add(responseText);
 		target.add(feedbackpanel);
