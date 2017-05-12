@@ -17,7 +17,7 @@
 		        		<label><b>Location</b></label>
 		        	</td>
 		        	<td>
-			        	<select style="width: 100%; height: 25px;" wicket:id="location"></select>
+			        	<select id="location-selenium" style="width: 100%; height: 25px;" wicket:id="location"></select>
 		        	</td>
 	        	</tr>
 				<tr>	 
@@ -25,7 +25,7 @@
 		        		<label><b>Realm</b></label>
 		        	</td>
 		        	<td>
-			        	<select style="width: 100%; height: 25px;" wicket:id="realm"></select>
+			        	<select id="realm-selenium" style="width: 100%; height: 25px;" wicket:id="realm"></select>
 		        	</td>
 				</tr>
 				<tr>
@@ -33,12 +33,12 @@
 	        			<label><b>Character name</b></label>
 	        		</td>
 	        		<td>
-	        			<input placeholder="Character name" type="text" wicket:id="name" />
+	        			<input id="name-selenium" placeholder="Character name" type="text" wicket:id="name" />
 	        		</td>
 	        	</tr>
 	        	<tr>
 	        		<td>
-	        			<Button class="button" wicket:id="search">Search</Button>
+	        			<Button id="search-selenium" class="button" wicket:id="search">Search</Button>
 	        		</td>
 	        		<td>
 	        			<button class="button" wicket:id="add-character-button" style="width: 150px;">Add character</button>
