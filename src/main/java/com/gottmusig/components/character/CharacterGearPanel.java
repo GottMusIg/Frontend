@@ -1,13 +1,17 @@
 package com.gottmusig.components.character;
 
-import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebComponent;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.gottmusig.database.service.domain.character.Character;
+import com.gottmusig.database.service.domain.item.Item;
 
 public class CharacterGearPanel extends Panel {
 
@@ -21,10 +25,13 @@ public class CharacterGearPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 
 	private final Label characterName;
-	private final WebComponent characterImage;
+	private final WebMarkupContainer characterImage;
+	private final ItemPanel headPanel;
 
 	private IModel<Character> characterModel;
 	private IModel<String> characterImageModel;
+	private IModel<Item> headItemModel;
+	
 
 	public CharacterGearPanel(String id, IModel<Character> characterModel) {
 		super(id);
@@ -34,8 +41,30 @@ public class CharacterGearPanel extends Panel {
 
 		this.characterName = new Label("character-name");
 
-		// TODO Background-image instead of img
-		this.characterImage = new WebComponent("char-image", characterImageModel) {
+		this.characterImage = new WebMarkupContainer("character-image");
+		characterImage.setOutputMarkupId(true);
+		characterImage.setEscapeModelStrings(false);
+
+		
+		headPanel = new ItemPanel("head-item");
+		headPanel.setOutputMarkupId(true);
+		
+		showGear(characterModel, null);
+
+		characterImage.add(headPanel);
+
+		add(characterName);
+		add(characterImage);
+	}
+
+	public void showGear(IModel<Character> characterModel, AjaxRequestTarget target) {
+		if (characterModel.getObject() == null) return;
+		this.characterModel = characterModel;
+		String characterImageString = characterModel.getObject().getThumbnailId();
+		characterImageModel.setObject(WOW_RENDER_PAGE + characterImageString + WOW_RENDER_TYPE);
+		characterImage.add(AttributeModifier.append("style", "background-image: url('" + characterImageModel.getObject() + "');"));
+		this.characterName.setDefaultModel(Model.of(characterModel.getObject().getName()));
+		this.headItemModel = new AbstractReadOnlyModel<Item>() {
 
 			/**
 			 * 
@@ -43,29 +72,15 @@ public class CharacterGearPanel extends Panel {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected void onComponentTag(ComponentTag tag) {
-				super.onComponentTag(tag);
-				if (getDefaultModelObject() != null) {
-					checkComponentTag(tag, "img");
-					tag.put("src", getDefaultModelObjectAsString());
-				}
+			public Item getObject() {
+				return characterModel.getObject().getEquipmentSet().getHead();
 			}
-
+			
 		};
-		characterImage.setOutputMarkupId(true);
-
-		showGear(characterModel);
-
-		add(characterName);
-		add(characterImage);
-	}
-
-	public void showGear(IModel<Character> characterModel) {
-		if (characterModel.getObject() == null) return;
-		this.characterModel = characterModel;
-		String characterImageString = characterModel.getObject().getThumbnailId();
-		characterImageModel.setObject(WOW_RENDER_PAGE + characterImageString + WOW_RENDER_TYPE);
-		this.characterName.setDefaultModel(Model.of(characterModel.getObject().getName()));
+		this.headPanel.showItem(headItemModel);
+		if(target != null) {
+			target.add(headPanel);
+		}
 	}
 
 	@Override

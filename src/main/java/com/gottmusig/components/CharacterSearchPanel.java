@@ -174,7 +174,7 @@ public class CharacterSearchPanel extends Panel {
 		Session.get().getFeedbackMessages().clear();
 		if(restResult.isPresent()) {
 			characterModel.setObject(restResult.get());
-			gearPanel.showGear(characterModel);
+			gearPanel.showGear(characterModel, target);
 			gearPanel.setVisible(true);
 		} else {
 			characterModel.setObject(null);
