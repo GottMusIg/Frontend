@@ -2,7 +2,6 @@ package com.gottmusig.components.character;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.WebComponent;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -27,10 +26,23 @@ public class CharacterGearPanel extends Panel {
 	private final Label characterName;
 	private final WebMarkupContainer characterImage;
 	private final ItemPanel headPanel;
+	private final ItemPanel neckPanel;
+	private final ItemPanel shoulderPanel;
+	private final ItemPanel backPanel;
+	private final ItemPanel chestPanel;
+	private final ItemPanel shirtPanel;
+	private final ItemPanel wristPanel;
 
+	
 	private IModel<Character> characterModel;
 	private IModel<String> characterImageModel;
 	private IModel<Item> headItemModel;
+	private IModel<Item> neckItemModel;
+	private IModel<Item> shoulderItemModel;
+	private IModel<Item> backItemModel;
+	private IModel<Item> chestItemModel;
+	private IModel<Item> shirtItemModel;
+	private IModel<Item> wristItemModel;
 	
 
 	public CharacterGearPanel(String id, IModel<Character> characterModel) {
@@ -49,10 +61,34 @@ public class CharacterGearPanel extends Panel {
 		headPanel = new ItemPanel("head-item");
 		headPanel.setOutputMarkupId(true);
 		
+		neckPanel = new ItemPanel("nack-item");
+		neckPanel.setOutputMarkupId(true);
+
+		shoulderPanel = new ItemPanel("shoulders-item");
+		shoulderPanel.setOutputMarkupId(true);
+		
+		backPanel = new ItemPanel("back-item");
+		backPanel.setOutputMarkupId(true);
+		
+		chestPanel = new ItemPanel("chest-item");
+		chestPanel.setOutputMarkupId(true);
+		
+		shirtPanel = new ItemPanel("shirt-item");
+		shirtPanel.setOutputMarkupId(true);
+		
+		wristPanel = new ItemPanel("wrist-item");
+		wristPanel.setOutputMarkupId(true);
+		
 		showGear(characterModel, null);
 
 		characterImage.add(headPanel);
-
+		characterImage.add(neckPanel);
+		characterImage.add(shoulderPanel);
+		characterImage.add(backPanel);
+		characterImage.add(chestPanel);
+		characterImage.add(shirtPanel);
+		characterImage.add(wristPanel);
+		
 		add(characterName);
 		add(characterImage);
 	}
@@ -77,9 +113,99 @@ public class CharacterGearPanel extends Panel {
 			}
 			
 		};
+		this.neckItemModel = new AbstractReadOnlyModel<Item>() {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Item getObject() {
+				return characterModel.getObject().getEquipmentSet().getNeck();
+			}
+			
+		};
+		this.shoulderItemModel = new AbstractReadOnlyModel<Item>() {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Item getObject() {
+				return characterModel.getObject().getEquipmentSet().getShoulders();
+			}
+			
+		};
+		this.backItemModel = new AbstractReadOnlyModel<Item>() {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Item getObject() {
+				return characterModel.getObject().getEquipmentSet().getBack();
+			}
+			
+		};
+		this.chestItemModel = new AbstractReadOnlyModel<Item>() {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Item getObject() {
+				return characterModel.getObject().getEquipmentSet().getChest();
+			}
+			
+		};
+		this.shirtItemModel = new AbstractReadOnlyModel<Item>() {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Item getObject() {
+				return characterModel.getObject().getEquipmentSet().getSkirt();
+			}
+			
+		};
+		this.wristItemModel = new AbstractReadOnlyModel<Item>() {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Item getObject() {
+				return characterModel.getObject().getEquipmentSet().getWrist();
+			}
+			
+		};
 		this.headPanel.showItem(headItemModel);
+		this.neckPanel.showItem(neckItemModel);
+		this.shoulderPanel.showItem(shoulderItemModel);
+		this.backPanel.showItem(backItemModel);
+		this.chestPanel.showItem(chestItemModel);
+		this.shirtPanel.showItem(shirtItemModel);
+		this.wristPanel.showItem(wristItemModel);
 		if(target != null) {
 			target.add(headPanel);
+			target.add(neckPanel);
+			target.add(shoulderPanel);
+			target.add(backPanel);
+			target.add(chestPanel);
+			target.add(shirtPanel);
+			target.add(wristPanel);
 		}
 	}
 

@@ -6,9 +6,13 @@
 </head>
 <body>
 	<wicket:panel>
-		<div class="item-border">
+		<div style="display: flex; padding: 5px;">
+			<img wicket:id="item-img" class="item-border">
+			<div style="font-weight: bolder; padding: 5px; background-color: rgba(30, 28, 27, 0.25);">
+				<span wicket:id="item-name"></span><br />
+				<span wicket:id="item-gs" style="color: #777; float: left; margin-top: 5px;"></span>
+			</div>
 		</div>
-		<span wicket:id="item-name"></span>
 	</wicket:panel>
 </body>
 </html>
