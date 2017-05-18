@@ -9,7 +9,7 @@ import org.apache.wicket.model.Model;
 
 import com.gottmusig.database.service.domain.item.Item;
 
-public class ItemPanel extends Panel {
+public class ItemLeftPanel extends Panel {
 
 	/**
 	 * 
@@ -20,7 +20,7 @@ public class ItemPanel extends Panel {
 	private final Label itemGS;
 	private final WebComponent itemImage;
 	
-	public ItemPanel(String id) {
+	public ItemLeftPanel(String id) {
 		super(id);
 		
 		this.itemImage = new WebComponent("item-img");
@@ -37,6 +37,7 @@ public class ItemPanel extends Panel {
 	
 	public void showItem(IModel<Item> itemModel) {
 		if(itemModel.getObject() == null) return;
+		if(itemModel.getObject().getName().contains("empty")) return;
 		this.itemName.setDefaultModelObject(itemModel.getObject().getName());
 		this.itemGS.setDefaultModelObject(itemModel.getObject().getItemLevel().toString());
 		this.itemImage.add(new AttributeModifier("src", Model.of(itemModel.getObject().getIconTooltip())));
