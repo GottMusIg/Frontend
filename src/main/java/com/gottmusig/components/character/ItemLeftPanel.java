@@ -42,12 +42,20 @@ public class ItemLeftPanel extends Panel {
 	}
 	
 	public void showItem(IModel<Item> itemModel) {
-		if(itemModel.getObject() == null) return;
-		if(itemModel.getObject().getName().contains("empty")) return;
-		this.itemName.setDefaultModelObject(itemModel.getObject().getName());
-		this.itemGS.setDefaultModelObject(itemModel.getObject().getItemLevel().toString());
-		this.itemImage.add(new AttributeModifier("src", Model.of(itemModel.getObject().getIconTooltip())));
-		this.wowHead.add(new AttributeModifier("rel", Model.of(itemModel.getObject().getWowHeadTooltip())));
+		IModel<String> itemNameModel = Model.of("Empty Slot");
+		IModel<String> itemGSModel = Model.of("-");
+		IModel<String> itemImageModel = Model.of("http://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg");
+		IModel<String> wowHeadModel = Model.of("");
+		if(itemModel.getObject() != null && !itemModel.getObject().getName().contains("empty")) {
+			itemNameModel = Model.of(itemModel.getObject().getName());
+			itemGSModel = Model.of(itemModel.getObject().getItemLevel().toString());
+			itemImageModel = Model.of(itemModel.getObject().getIconTooltip());
+			wowHeadModel = Model.of(itemModel.getObject().getWowHeadTooltip());
+		}
+		this.itemName.setDefaultModel(itemNameModel);
+		this.itemGS.setDefaultModel(itemGSModel);
+		this.itemImage.add(new AttributeModifier("src", itemImageModel));
+		this.wowHead.add(new AttributeModifier("rel", wowHeadModel));
 	}
 	
 }

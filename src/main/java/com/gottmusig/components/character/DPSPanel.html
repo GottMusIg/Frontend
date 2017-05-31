@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.3-strict.dtd"
+	lang="de">
+<head>
+</head>
+<body>
+	<wicket:panel>
+        <h1 wicket:id="title"></h1>
+		<div style="background-color: rgba(255, 255, 255, 0.1);padding: 15px;margin-top: 5px;border-radius: 3px;box-shadow: 2px 2px 3px #000; position: relative;">
+			<h4><span wicket:id="char-name"></span></h4>
+			<h4 class="total-dps" wicket:id="dps"></h4>
+               <div id="dps-back">
+                   <div class="dps" wicket:id="dps-diagram"></div>
+               </div>
+        </div>
+	</wicket:panel>
+</body>
+</html>

@@ -25,6 +25,7 @@ public class CharacterGearPanel extends Panel {
 	private final WebMarkupContainer characterImage;
 	private final ItemLeftSidePanel itemLeftSidePanel;
 	private final ItemRightSidePanel itemRightSidePanel;
+	private final DPSPanel dpsPanel;
 	
 	private IModel<Character> characterModel;
 	private IModel<String> characterImageModel;
@@ -53,8 +54,11 @@ public class CharacterGearPanel extends Panel {
 		characterImage.add(itemLeftSidePanel);
 		characterImage.add(itemRightSidePanel);
 		
+		dpsPanel = new DPSPanel("dps-panel", "DPS");
+		
 		add(characterName);
 		add(characterImage);
+		add(dpsPanel);
 	}
 
 	public void showGear(IModel<Character> characterModel, AjaxRequestTarget target) {
@@ -63,9 +67,12 @@ public class CharacterGearPanel extends Panel {
 		String characterImageString = characterModel.getObject().getThumbnailId();
 		characterImageModel.setObject(WOW_RENDER_PAGE + characterImageString + WOW_RENDER_TYPE);
 		characterImage.add(AttributeModifier.append("style", "background-image: url('" + characterImageModel.getObject() + "');"));
-		this.characterName.setDefaultModel(Model.of(characterModel.getObject().getName()));
+		this.characterName.setDefaultModel(Model.of(characterModel.getObject().getName() 
+										   + " - " + characterModel.getObject().getClassSpecification().getName()
+										   + " " + characterModel.getObject().getWOWClass().getName()));
 		this.itemLeftSidePanel.showLeftSidePanel(characterModel);
 		this.itemRightSidePanel.showItemRightSidePanel(characterModel);
+		this.dpsPanel.showDPS(characterModel);
 	}
 
 	@Override
