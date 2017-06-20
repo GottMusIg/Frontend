@@ -14,7 +14,7 @@ public class CharacterGearPanel extends Panel {
 
 	private static final String WOW_RENDER_PAGE = "http://render-eu.worldofwarcraft.com/character/";
 	private static final String WOW_RENDER_TYPE = "-profilemain.jpg";
-	private static final String REPLACE = "-avatar.jpg";
+//	private static final String REPLACE = "-avatar.jpg";
 
 	/**
 	 * 

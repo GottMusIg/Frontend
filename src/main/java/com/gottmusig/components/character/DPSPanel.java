@@ -1,5 +1,10 @@
 package com.gottmusig.components.character;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
+
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -39,7 +44,29 @@ public class DPSPanel extends Panel {
 
 	public void showDPS(IModel<Character> characterModel) {
 		charNameLabel.setDefaultModelObject("DPS of " + characterModel.getObject().getName());
-		dpsLabel.setDefaultModelObject(characterModel.getObject().getDPS() + "DPS");
+		DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+		symbols.setDecimalSeparator('.');
+		DecimalFormat format = new DecimalFormat("0.#");
+		format.setDecimalFormatSymbols(symbols);
+		try {
+			dpsLabel.setDefaultModelObject(format.parse("" + characterModel.getObject().getDPS()).floatValue() + " DPS");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		dpsDiagram.add(AttributeModifier.append("class", characterModel.getObject()
+																	   .getClassSpecification()
+																	   .getWOWClass()
+																	   .getName()
+																	   .toLowerCase()
+																	   .replaceAll("\\s+", "")));
+		
+//		int maxDps = ((SpecificationDPSListModel) getDefaultModel()).getMaxDPS();
+//		int dps = characterModel.getDPS() * 100 / maxDps;
+		
+		int dps = 50;
+		
+		dpsDiagram.add(AttributeModifier.append("style", "width: " + dps + "%;"));
 	}
 	
 }
