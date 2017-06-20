@@ -62,7 +62,7 @@ public class DPSPanel extends Panel {
 																	   .toLowerCase()
 																	   .replaceAll("\\s+", "")));
 		
-		int maxDps = ((SpecificationDPSListModel) getDefaultModel()).getMaxDPS();
+		int maxDps = characterModel.getObject().getClassSpecification().getSpecificationDPS().getDPS();
 		int dps = characterModel.getObject().getDPS() * 100 / maxDps;
 		
 //		int dps = 50;
