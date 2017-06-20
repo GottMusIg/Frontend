@@ -12,6 +12,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.gottmusig.database.service.domain.character.Character;
+import com.gottmusig.models.SpecificationDPSListModel;
 
 public class DPSPanel extends Panel {
 
@@ -61,10 +62,10 @@ public class DPSPanel extends Panel {
 																	   .toLowerCase()
 																	   .replaceAll("\\s+", "")));
 		
-//		int maxDps = ((SpecificationDPSListModel) getDefaultModel()).getMaxDPS();
-//		int dps = characterModel.getDPS() * 100 / maxDps;
+		int maxDps = ((SpecificationDPSListModel) getDefaultModel()).getMaxDPS();
+		int dps = characterModel.getObject().getDPS() * 100 / maxDps;
 		
-		int dps = 50;
+//		int dps = 50;
 		
 		dpsDiagram.add(AttributeModifier.append("style", "width: " + dps + "%;"));
 	}
