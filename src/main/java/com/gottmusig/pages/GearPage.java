@@ -1,6 +1,7 @@
 package com.gottmusig.pages;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -9,6 +10,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import com.gottmusig.components.CharacterSearchPanel;
 import com.gottmusig.components.basics.FooterPanel;
 import com.gottmusig.components.basics.HeaderPanel;
+import com.gottmusig.database.service.domain.character.Character;
 import com.gottmusig.database.service.domain.character.CharacterService;
 import com.gottmusig.database.service.domain.realm.RealmService;
 import com.gottmusig.models.RealmLocationListModel;
@@ -35,10 +37,20 @@ public class GearPage extends WebPage implements Serializable {
 		
 		add(new HeaderPanel("header"));
 		
-		add(new CharacterSearchPanel("character-search",
-									 locationsModel,
-									 searchCharModel,
-									 realmServiceModel));
+		if(!parameters.get("realm").isEmpty() && !parameters.get("name").isEmpty()) {
+			Optional<Character> character = searchCharModel.getObject()
+					.searchCharacter(parameters.get("realm").toString(),
+							parameters.get("name").toString());
+			if(character.isPresent()) {
+				//TODO !!
+			}
+		}
+
+		CharacterSearchPanel searchPanel = new CharacterSearchPanel("character-search",
+				 													locationsModel,
+				 													searchCharModel,
+				 													realmServiceModel);
+		add(searchPanel);
 		
 		add(new FooterPanel("footer"));
 	}

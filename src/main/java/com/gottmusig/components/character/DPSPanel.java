@@ -12,7 +12,6 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.gottmusig.database.service.domain.character.Character;
-import com.gottmusig.models.SpecificationDPSListModel;
 
 public class DPSPanel extends Panel {
 
@@ -55,6 +54,8 @@ public class DPSPanel extends Panel {
 			e.printStackTrace();
 		}
 		
+		dpsDiagram.add(AttributeModifier.remove("class"));
+		dpsDiagram.add(AttributeModifier.append("class", "dps"));
 		dpsDiagram.add(AttributeModifier.append("class", characterModel.getObject()
 																	   .getClassSpecification()
 																	   .getWOWClass()
@@ -62,8 +63,11 @@ public class DPSPanel extends Panel {
 																	   .toLowerCase()
 																	   .replaceAll("\\s+", "")));
 		
+		int charDps = characterModel.getObject().getDPS();
+		charDps = charDps <= 1 ? 1 : charDps;
 		int maxDps = characterModel.getObject().getClassSpecification().getSpecificationDPS().getDPS();
-		int dps = characterModel.getObject().getDPS() * 100 / maxDps;
+		maxDps = maxDps <= 0 ? charDps : maxDps;
+		int dps = charDps * 100 / maxDps;
 		
 //		int dps = 50;
 		
