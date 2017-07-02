@@ -1,7 +1,6 @@
 package com.gottmusig.components.character;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -14,7 +13,6 @@ public class CharacterGearPanel extends Panel {
 
 	private static final String WOW_RENDER_PAGE = "http://render-eu.worldofwarcraft.com/character/";
 	private static final String WOW_RENDER_TYPE = "-profilemain.jpg";
-//	private static final String REPLACE = "-avatar.jpg";
 
 	/**
 	 * 
@@ -43,7 +41,7 @@ public class CharacterGearPanel extends Panel {
 		characterImage.setOutputMarkupId(true);
 		characterImage.setEscapeModelStrings(false);
 		
-		showGear(characterModel, null);
+		showGear(characterModel);
 		
 		this.itemLeftSidePanel = new ItemLeftSidePanel("item-left-side-panel");
 		itemLeftSidePanel.setOutputMarkupId(true);
@@ -61,7 +59,7 @@ public class CharacterGearPanel extends Panel {
 		add(dpsPanel);
 	}
 
-	public void showGear(IModel<Character> characterModel, AjaxRequestTarget target) {
+	public void showGear(IModel<Character> characterModel) {
 		if (characterModel.getObject() == null) return;
 		this.characterModel = characterModel;
 		String characterImageString = characterModel.getObject().getThumbnailId();

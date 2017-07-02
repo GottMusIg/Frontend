@@ -1,5 +1,7 @@
 package com.gottmusig.components.account;
 
+import java.util.Optional;
+
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
@@ -41,10 +43,13 @@ public class CharacterOverviewPanel extends Panel {
 								  ServiceProxyModel<AccountService> accountAdminModel) {
 		super(id);
 		
-		accountModel = Model.of(accountAdminModel.getObject()
-												 .searchAccount(((GottMusIgSession) AuthenticatedWebSession.get()).getAccount()
-														 														  .getUserName())
-												 .get());
+		Optional<Account> gottMusIgAccount = accountAdminModel.getObject()
+													 		  .searchAccount(((GottMusIgSession) AuthenticatedWebSession.get())
+													 				  													.getAccount()
+													 				  													.getUserName());
+		if(gottMusIgAccount.isPresent()) {
+			accountModel = Model.of(gottMusIgAccount.get());
+		}
 		
 		add(new Label("username", accountModel.getObject().getUserName()));
 		

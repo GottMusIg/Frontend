@@ -3,6 +3,7 @@ package com.gottmusig.components;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -28,7 +29,8 @@ public class ClassDPSPanel extends Panel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//TODO fix markup - li instead of ul for ListView.
+	private static final Logger LOGGER = Logger.getLogger(ClassDPSPanel.class.getName());
+	
 	public ClassDPSPanel(String id,
 						 String title,
 						 SpecificationDPSListModel specificationDPSModel) {
@@ -67,7 +69,7 @@ public class ClassDPSPanel extends Panel {
 																			 .getDPS())
 															 .floatValue())));
 				} catch (ParseException e) {
-					e.printStackTrace();
+					LOGGER.warning("Could not parse the dps to ###.###: " + e);
 				}
 				
 				WebMarkupContainer dpsDiagram = new WebMarkupContainer("dps-diagram");

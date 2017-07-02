@@ -28,10 +28,13 @@ public class FooterPanel extends Panel {
 			 */
 			private static final long serialVersionUID = 1L;
 
+			@Override
 			protected CharSequence getURL() {
 				return super.getURL() + "#leon";
-			};
+			}
+			
 		});
+		
 		add(new BookmarkablePageLink<Object>("about-kamil", AboutPage.class) {
 			
 			/**

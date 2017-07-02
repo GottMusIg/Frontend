@@ -49,12 +49,12 @@ public class ApplicationConfiguration {
 	
 	@Bean
 	public ServiceProxyModel<AccountService> accountAdministrationModel() {
-		return new ServiceProxyModel<AccountService>(gottMusIg.accountService());
+		return new ServiceProxyModel<>(gottMusIg.accountService());
 	}
 	
 	@Bean
 	public ServiceProxyModel<RealmService> realmServiceModel() {
-		return new ServiceProxyModel<RealmService>(gottMusIg.realmService());
+		return new ServiceProxyModel<>(gottMusIg.realmService());
 	}
 	
 }

@@ -66,7 +66,7 @@ public class CharacterSearchPanel extends Panel {
 		
 		formDataModel = new CompoundPropertyModel<>((CharacterSearchFormData)getDefaultModelObject());
 		
-		final IModel<List<String>> realmListModel = new ListModel<String>();
+		final IModel<List<String>> realmListModel = new ListModel<>();
 		realmListModel.setObject(realmService.getObject()
 											 .getAllRealms(locationsListModel.getObject()
 													 						 .iterator()
@@ -91,7 +91,7 @@ public class CharacterSearchPanel extends Panel {
 		
 		Form<CharacterSearchFormData> searchForm = new Form<>("character-search-form", formDataModel);
 		
-		final DropDownChoice<String> realms = new DropDownChoice<String>("realm", realmListModel);
+		final DropDownChoice<String> realms = new DropDownChoice<>("realm", realmListModel);
 		realms.setOutputMarkupId(true);
 		
 		DropDownChoice<Location> location = new DropDownChoice<>("location", locationsListModel);
