@@ -74,15 +74,11 @@ public class RegistryPanel extends Panel {
 		
 	}
 	
-	/*
-	 * TODO FIXIT - org.apache.commons.codec.digest.DigestUtils.sha256Hex(stringText);
-	 * OR Guava - Hashing.sha256().hashString("String", StandardCharsets.UTF_8).toString();
-	 */
 	public static String sha256(String base) {
 		try {	
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
 			byte[] hash = digest.digest(base.getBytes("UTF-8"));
-			StringBuffer hexString = new StringBuffer();
+			StringBuilder hexString = new StringBuilder();
 			
 			for(int i = 0; i < hash.length; i++) {
 				String hex = Integer.toHexString(0xff & hash[i]);
