@@ -46,12 +46,13 @@ public class CharacterSearchPanel extends Panel {
 	
 	private final IModel<CharacterSearchFormData> formDataModel;
 	private final ServiceProxyModel<CharacterService> searchCharModel;
-	private final IModel<Character> characterModel;
+	private IModel<Character> characterModel;
 	private IModel<List<Location>> locationsListModel;
 	
 	private final CharacterGearPanel gearPanel;
 	private final Label responseText;
 	private final FeedbackPanel feedbackpanel;
+	private final AjaxButton submit;
 	
 	public CharacterSearchPanel(String id,
 								RealmLocationListModel locationsListModel,
@@ -137,7 +138,7 @@ public class CharacterSearchPanel extends Panel {
 		};
 		addCharacterButton.setVisible(isSignedIn);
 		
-		AjaxButton submit = new AjaxButton("search") {
+		submit = new AjaxButton("search") {
 
 			/**
 			 * 

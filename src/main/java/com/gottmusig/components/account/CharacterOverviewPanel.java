@@ -1,5 +1,7 @@
 package com.gottmusig.components.account;
 
+import org.apache.wicket.ajax.AjaxEventBehavior;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -9,6 +11,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.gottmusig.GottMusIgSession;
 import com.gottmusig.database.service.domain.account.Account;
@@ -57,6 +60,24 @@ public class CharacterOverviewPanel extends Panel {
 	
 				@Override
 				protected void populateItem(ListItem<Character> item) {
+					
+					item.add(new AjaxEventBehavior("click") {
+						
+						/**
+						 * 
+						 */
+						private static final long serialVersionUID = 1L;
+
+						@Override
+						protected void onEvent(AjaxRequestTarget target) {
+							PageParameters parameters = new PageParameters();
+							parameters.add("realm", item.getModelObject().getRealm().getName());
+							parameters.add("name", item.getModelObject().getName());
+
+							setResponsePage(GearPage.class, parameters);
+						}
+						
+					});
 					
 					item.add(new Label("character-name", Model.of(item.getModelObject().getName())));
 					

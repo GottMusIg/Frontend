@@ -57,6 +57,8 @@ public class DPSPanel extends Panel {
 			LOGGER.warning("Could not parse the dps to ###.###: " + e);
 		}
 		
+		dpsDiagram.add(AttributeModifier.remove("class"));
+		dpsDiagram.add(AttributeModifier.append("class", "dps"));
 		dpsDiagram.add(AttributeModifier.append("class", characterModel.getObject()
 																	   .getClassSpecification()
 																	   .getWOWClass()
@@ -64,8 +66,11 @@ public class DPSPanel extends Panel {
 																	   .toLowerCase()
 																	   .replaceAll("\\s+", "")));
 		
+		int charDps = characterModel.getObject().getDPS();
+		charDps = charDps <= 1 ? 1 : charDps;
 		int maxDps = characterModel.getObject().getClassSpecification().getSpecificationDPS().getDPS();
-		int dps = characterModel.getObject().getDPS() * 100 / maxDps;
+		maxDps = maxDps <= 0 ? charDps : maxDps;
+		int dps = charDps * 100 / maxDps;
 		
 //		int dps = 50;
 		
