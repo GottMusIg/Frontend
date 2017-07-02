@@ -28,15 +28,12 @@ public class SignInDropDownPanel extends Panel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//TODO implements SignInPanel
 	@SpringBean
 	private ServiceProxyModel<AccountService> accountServiceModel;
 	
 	public SignInDropDownPanel(String id) {
 		super(id, Model.of(new SignInFormData()));
 
-		//TODO implements the SignInPanel
-		
 		final IModel<SignInFormData> formDataModel = new CompoundPropertyModel<>((SignInFormData) getDefaultModelObject());
 		
 		Form<SignInFormData> signInForm = new Form<SignInFormData>("sign-in-form", formDataModel) {
@@ -59,7 +56,6 @@ public class SignInDropDownPanel extends Panel {
 				if(isAuth) {
 					throw new RestartResponseAtInterceptPageException(AccountFeedbackPage.class);
 				} else {
-					//Feedback
 					throw new RestartResponseAtInterceptPageException(SignInPage.class);
 				}
 			}
@@ -75,9 +71,6 @@ public class SignInDropDownPanel extends Panel {
 		signInForm.add(new BookmarkablePageLink<>("create-account", RegistryPage.class));
 
 		add(signInForm);
-		
-		//TODO Fix for FireFox autocomplete (Dropdown disappears)
-		
 	}
 
 }

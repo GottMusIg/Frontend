@@ -35,7 +35,7 @@ public class AccountFeedbackPage extends WebPage {
 
 			@Override
 			public String getObject() {
-				StringBuffer feedback = new StringBuffer("You are succesfully ");
+				StringBuilder feedback = new StringBuilder("You are succesfully ");
 				if(session.isSignedIn()) {
 					feedback.append("signed in " + session.getAccount().getUserName() + ".");
 				} else {

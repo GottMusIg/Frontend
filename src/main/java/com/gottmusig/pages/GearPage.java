@@ -42,7 +42,7 @@ public class GearPage extends WebPage implements Serializable {
 					.searchCharacter(parameters.get("realm").toString(),
 							parameters.get("name").toString());
 			if(character.isPresent()) {
-				//TODO !!
+				// Show the Character
 			}
 		}
 

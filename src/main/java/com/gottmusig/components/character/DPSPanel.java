@@ -22,6 +22,7 @@ public class DPSPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger LOGGER = Logger.getLogger(DPSPanel.class.getName());
+	public static final String CLASS = "class";
 	
 	private final Label charNameLabel;
 	private final Label dpsLabel;
@@ -57,9 +58,9 @@ public class DPSPanel extends Panel {
 			LOGGER.warning("Could not parse the dps to ###.###: " + e);
 		}
 		
-		dpsDiagram.add(AttributeModifier.remove("class"));
-		dpsDiagram.add(AttributeModifier.append("class", "dps"));
-		dpsDiagram.add(AttributeModifier.append("class", characterModel.getObject()
+		dpsDiagram.add(AttributeModifier.remove(CLASS));
+		dpsDiagram.add(AttributeModifier.append(CLASS, "dps"));
+		dpsDiagram.add(AttributeModifier.append(CLASS, characterModel.getObject()
 																	   .getClassSpecification()
 																	   .getWOWClass()
 																	   .getName()
@@ -71,8 +72,6 @@ public class DPSPanel extends Panel {
 		int maxDps = characterModel.getObject().getClassSpecification().getSpecificationDPS().getDPS();
 		maxDps = maxDps <= 0 ? charDps : maxDps;
 		int dps = charDps * 100 / maxDps;
-		
-//		int dps = 50;
 		
 		dpsDiagram.add(AttributeModifier.append("style", "width: " + dps + "%;"));
 	}

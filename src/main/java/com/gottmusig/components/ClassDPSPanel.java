@@ -31,7 +31,6 @@ public class ClassDPSPanel extends Panel {
 
 	private static final Logger LOGGER = Logger.getLogger(ClassDPSPanel.class.getName());
 	
-	//TODO fix markup - li instead of ul for ListView.
 	public ClassDPSPanel(String id,
 						 String title,
 						 SpecificationDPSListModel specificationDPSModel) {
